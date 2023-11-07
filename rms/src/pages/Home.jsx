@@ -1,12 +1,11 @@
 import React from "react";
-import HeroContent from "./HeroContent";
-import FeaturedRooms from "./FeaturedRooms";
-import Services from "./Services";
-import NewsLetter from "./NewsLetter";
 import styled from "styled-components";
-import { useAuthContext } from "../contexts/AuthContext";
+import HeroContent from "../components/HeroContent";
+import FeauturedDishes from "../components/FeauturedDishes";
+import Services from "../components/Services";
+import NewsLetter from "../components/NewsLetter";
 const Home = () => {
-  const { isAuthenticated, user } = useAuthContext();
+  console.log("Home Element");
   return (
     <>
       <Hero>
@@ -14,7 +13,7 @@ const Home = () => {
           <HeroContent />
         </HeroContentWrapper>
       </Hero>
-      <FeaturedRooms />
+      <FeauturedDishes />
       <Services />
       <NewsLetter />
     </>

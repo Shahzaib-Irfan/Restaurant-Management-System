@@ -9,10 +9,7 @@ const ContactUs = () => {
       </center>
       <ReviewWrapper>
         <center>
-          <form
-            action={`https://smoggy-cheddar-banon.glitch.me/contactus/addquestion`}
-            method="post"
-          >
+          <form action={""} method="post">
             <div className="center-box">
               <div className="form-box">
                 <div className="mb-3">

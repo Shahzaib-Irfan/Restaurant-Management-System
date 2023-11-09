@@ -14,7 +14,7 @@ const AdminNavbar = () => {
     >
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-          The Beverli Hills
+          Restaurant
         </Link>
         <button
           className="navbar-toggler"
@@ -35,8 +35,8 @@ const AdminNavbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" to="managerooms">
-                Manage Rooms
+              <Link className="nav-link active" to="managedishes">
+                Manage Dishes
               </Link>
             </li>
             <li className="nav-item">

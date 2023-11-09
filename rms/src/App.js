@@ -6,7 +6,9 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import AdminDishes from "./components/Admin/Dishes/ManageDishes";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import AddDish from "./components/Admin/Dishes/AddDish";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/managedishes" element={<AdminDishes />} />
+        <Route path="/managedishes/adddish" element={<AddDish />} />
       </Routes>
     </Router>
   );

@@ -4,9 +4,10 @@ const dishSchema = new mongoose.Schema(
   {
     name: String,
     description: String,
-    indegrients: Array,
+    ingredients: Array,
     type: String,
     price: Number,
+    image: String,
   },
   { timestamps: true }
 );

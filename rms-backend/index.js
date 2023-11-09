@@ -6,9 +6,12 @@ const {
   validateToken,
   requireRoles,
 } = require("./utils/authorizationMiddleware");
+
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 const cors = require("cors");
 const dishRoutes = require("./routes/dishRoutes");
-// const userRoutes = require("./routes/userRoutes");
+const userRoutes = require("./routes/userRoutes");
 // const invoiceRoutes = require("./routes/invoiceRoutes");
 // const purchaseRoutes = require("./routes/purcahseHistoryRoutes");
 // const loginRoutes = require("./routes/loginRoutes");
@@ -18,7 +21,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use("/dishApi", dishRoutes);
-// app.use("/userApi", userRoutes);
+app.use("/userApi", userRoutes);
 // app.use("/invoiceApi", invoiceRoutes);
 // app.use("/purchaseHistoryApi", purchaseRoutes);
 // app.use("/loginApi", loginRoutes);
@@ -26,14 +29,14 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-app.get(
-  "/shared",
-  validateToken,
-  requireRoles(["Admin", "User"]),
-  (req, res) => {
-    res.json({ message: "Shared endpoint" });
-  }
-);
+// app.get(
+//   "/shared",
+//   validateToken,
+//   requireRoles(["Admin", "User"]),
+//   (req, res) => {
+//     res.json({ message: "Shared endpoint" });
+//   }
+// );
 app.get("/Welcome", (req, res) => {
   res.send("Shahzaib Irfan Hello g");
 });

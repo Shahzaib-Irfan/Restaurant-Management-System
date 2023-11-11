@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 const cors = require("cors");
 const dishRoutes = require("./routes/dishRoutes");
 const userRoutes = require("./routes/userRoutes");
-// const invoiceRoutes = require("./routes/invoiceRoutes");
+const restaurantRoutes = require("./routes/restaurantRoutes");
 // const purchaseRoutes = require("./routes/purcahseHistoryRoutes");
 // const loginRoutes = require("./routes/loginRoutes");
 const port = 3005;
@@ -22,6 +22,7 @@ app.use(bodyParser.json());
 
 app.use("/dishApi", dishRoutes);
 app.use("/userApi", userRoutes);
+app.use("/restaurantApi", restaurantRoutes);
 // app.use("/invoiceApi", invoiceRoutes);
 // app.use("/purchaseHistoryApi", purchaseRoutes);
 // app.use("/loginApi", loginRoutes);

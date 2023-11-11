@@ -26,12 +26,21 @@ async function createDish(req, res) {
   }
 }
 
+async function getDishes(req, res) {
+  try {
+    const products = await Dish.find({});
+    res.send(products);
+  } catch (err) {
+    console.log(err);
+    res.send(500).json({ error: err.message });
+  }
+}
+
 async function getDish(req, res) {
   try {
-    console.log("HHHHH");
-    const products = await Dish.find({});
-    console.log(products);
-    res.send(products);
+    const id = req.params.id;
+    const product = await Dish.findById(id);
+    res.send(product);
   } catch (err) {
     console.log(err);
     res.send(500).json({ error: err.message });
@@ -40,9 +49,18 @@ async function getDish(req, res) {
 
 async function updateDish(req, res) {
   try {
+    const file = req.file.filename;
+    console, log(req);
     const product = await Dish.updateOne(
       { _id: req.params["id"] },
-      { price: req.body["price"] }
+      {
+        name: req.body["dishName"],
+        description: req.body["description"],
+        type: req.body["dishType"],
+        ingredients: req.body["ingredients"],
+        price: req.body["price"],
+        image: file,
+      }
     );
     res.status(201).json(product);
   } catch (err) {
@@ -61,6 +79,7 @@ async function deleteDish(req, res) {
 
 module.exports = {
   createDish,
+  getDishes,
   getDish,
   updateDish,
   deleteDish,

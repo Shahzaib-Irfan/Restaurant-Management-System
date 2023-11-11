@@ -1,16 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useDishesContext } from "../../../contexts/DishContext";
-const Dish = ({ _id, name, ingredients, description, price, image }) => {
-  const { setMode } = useDishesContext();
+import { useRestaurantsContext } from "../../../contexts/RestaurantContext";
+const Restaurant = ({ _id, name, address, contact, image }) => {
+  const { setMode } = useRestaurantsContext();
   const handleDelete = async (e) => {
     e.preventDefault();
 
     // Perform the PUT request using your preferred method (e.g., fetch, axios)
     try {
       const response = await fetch(
-        `http://localhost:3005/dishApi/dishes/deleteDish/${_id}`,
+        `http://localhost:3005/restaurantApi/restaurants/deleteRestaurant/${_id}`,
         {
           method: "DELETE",
           headers: {
@@ -37,14 +37,19 @@ const Dish = ({ _id, name, ingredients, description, price, image }) => {
           />
           <div className="room-box-footer">
             <p style={{ color: "green" }}>{name}</p>
-            <p style={{ marginLeft: "40px" }}>{"Rs. " + price + "/-"} </p>
           </div>
           <div>
-            <Link to={``} className="btn">
-              Details
-            </Link>
+            <p style={{ color: "blue" }}>{address}</p>
+          </div>
+          <div>
+            <p style={{ color: "grey" }}>{contact}</p>
+          </div>
+          <div>
             {setMode === "Update" ? (
-              <Link to={`/managedishes/updatedish/${_id}`} className="btn">
+              <Link
+                to={`/managerestaurants/updaterestaurant/${_id}`}
+                className="btn"
+              >
                 Update
               </Link>
             ) : setMode === "Delete" ? (
@@ -101,4 +106,4 @@ const RoomWrapper = styled.div`
     }
   }
 `;
-export default Dish;
+export default Restaurant;

@@ -24,8 +24,8 @@ const dish_reducer = (state, action) => {
   if (action.type === GET_SINGLE_DISH_SUCCESS) {
     return {
       ...state,
-      singleDishDish: action.payload,
-      singleDishDishLoading: false,
+      singleDish: action.payload,
+      singleDishLoading: false,
     };
   }
   if (action.type === "SETMODE") {

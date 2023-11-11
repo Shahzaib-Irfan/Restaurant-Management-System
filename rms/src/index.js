@@ -4,12 +4,15 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { DishesProvider } from "./contexts/DishContext";
+import { RestaurantsProvider } from "./contexts/RestaurantContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <DishesProvider>
-    <App />
-  </DishesProvider>
+  <RestaurantsProvider>
+    <DishesProvider>
+      <App />
+    </DishesProvider>
+  </RestaurantsProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

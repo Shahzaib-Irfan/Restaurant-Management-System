@@ -38,7 +38,6 @@ export const DishesProvider = ({ children }) => {
       );
       const data = await response.data;
       dispatch({ type: GET_DISH_SUCCESS, payload: data });
-      console.log(state.dishes);
     } catch (error) {
       dispatch({ type: GET_DISH_ERROR });
     }
@@ -49,10 +48,11 @@ export const DishesProvider = ({ children }) => {
   const fetchSingleDish = async (url) => {
     dispatch({ type: GET_SINGLE_DISH_BEGIN });
     try {
-      const response = await axios(url);
-      const { data } = await response;
+      const response = await axios.get(url);
+      const data = await response.data;
       dispatch({ type: GET_SINGLE_DISH_SUCCESS, payload: data });
     } catch (error) {
+      console.log(error);
       dispatch({ type: GET_SINGLE_DISH_ERROR });
     }
   };

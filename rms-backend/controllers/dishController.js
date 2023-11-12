@@ -6,10 +6,18 @@ async function createDish(req, res) {
   try {
     const file = req.file.filename;
 
-    const { dishName, description, ingredients, dishType, price } = req.body;
+    const {
+      dishName,
+      restaurantID,
+      description,
+      ingredients,
+      dishType,
+      price,
+    } = req.body;
 
     const dishData = {
       name: dishName,
+      restaurantID: restaurantID,
       description,
       ingredients,
       type: dishType,

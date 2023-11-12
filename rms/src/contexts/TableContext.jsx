@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext, useEffect, useReducer } from "react";
-import reducer from "../reducers/restaurant_reducer";
+import reducer from "../reducers/table_reducer";
 //import { products_url as url } from "../utils/constants";
 import {
   GET_TABLE_BEGIN,

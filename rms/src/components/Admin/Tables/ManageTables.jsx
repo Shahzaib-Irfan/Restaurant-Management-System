@@ -8,7 +8,7 @@ import DisplayRestaurant from "./DisplayRestaurant";
 import { useTablesContext } from "../../../contexts/TableContext";
 
 const AdminTables = () => {
-  const { tables, fetchTables, handleSetModeUpdate } = useRestaurantsContext();
+  const { tables, fetchTables, handleSetModeUpdate } = useTablesContext();
   useEffect(() => {
     fetchTables();
   }, []);

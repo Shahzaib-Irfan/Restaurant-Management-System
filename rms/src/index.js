@@ -5,13 +5,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { DishesProvider } from "./contexts/DishContext";
 import { RestaurantsProvider } from "./contexts/RestaurantContext";
+import { TablesProvider } from "./contexts/TableContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <RestaurantsProvider>
-    <DishesProvider>
-      <App />
-    </DishesProvider>
+    <TablesProvider>
+      <DishesProvider>
+        <App />
+      </DishesProvider>
+    </TablesProvider>
   </RestaurantsProvider>
 );
 

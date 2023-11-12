@@ -1,17 +1,24 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import Image1 from "../../../assets/pexels-erica-zhao-2670273.jpg";
 import Image2 from "../../../assets/smallImage.jpg";
 import styled from "styled-components";
+import { useRestaurantsContext } from "../../../contexts/RestaurantContext";
 
 const AddDish = () => {
+  const { restaurants, fetchRestaurants } = useRestaurantsContext();
   const [formData, setFormData] = useState({
     dishName: "",
+    restaurantID: "",
     description: "",
     ingredients: [],
     dishType: "",
     price: 0,
     image: null,
   });
+
+  useEffect(() => {
+    fetchRestaurants();
+  }, []);
 
   const handleIngredientsChange = (e) => {
     const ingredientsArray = e.target.value.split(",");
@@ -85,6 +92,22 @@ const AddDish = () => {
                 onChange={handleInputChange}
               />
               <label for="floatingInput">Dish Name.</label>
+            </div>
+            <div class="form-floating">
+              <select
+                className="form-select form-select-sm"
+                aria-label=".form-select-sm example"
+                name="restaurantID"
+                placeholder="Select Restaurant"
+                onChange={handleInputChange}
+              >
+                {restaurants &&
+                  restaurants.map((restaurant, index) => (
+                    <option key={index} value={restaurant._id}>
+                      {restaurant.name}
+                    </option>
+                  ))}
+              </select>
             </div>
             <div class="form-floating">
               <textarea

@@ -49,6 +49,11 @@ const AdminNavbar = () => {
                 Tables
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link active" to="manageemployees">
+                Employees
+              </Link>
+            </li>
           </ul>
           <form className="d-flex">
             <div

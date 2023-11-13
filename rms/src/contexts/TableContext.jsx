@@ -34,7 +34,7 @@ export const TablesProvider = ({ children }) => {
     dispatch({ type: GET_TABLE_BEGIN });
     try {
       const response = await axios.get(
-        "http://localhost:3005/restaurantApi/restaurants/getRestaurants"
+        "http://localhost:3005/tableApi/tables/getTables"
       );
       const data = await response.data;
       dispatch({ type: GET_TABLE_SUCCESS, payload: data });

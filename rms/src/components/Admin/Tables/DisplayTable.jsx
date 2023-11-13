@@ -17,7 +17,7 @@ const Table = ({ _id, tableNo, restaurantID, capacity, reservationStatus }) => {
     fetchSingleRestaurant(
       `http://localhost:3005/restaurantApi/restaurants/getSingleRestaurant/${restaurantID}`
     );
-  });
+  }, [restaurantID]);
   const handleDelete = async (e) => {
     e.preventDefault();
 
@@ -38,7 +38,7 @@ const Table = ({ _id, tableNo, restaurantID, capacity, reservationStatus }) => {
     }
   };
 
-  if (loading || singleRestaurantError) {
+  if (loading || !singleRestaurant) {
     return <Loading />;
   } else {
     return (

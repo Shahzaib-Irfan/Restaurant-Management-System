@@ -14,6 +14,8 @@ import ManageRestaurants from "./components/Admin/Restaurants/ManageRestaurants"
 import AddRestaurant from "./components/Admin/Restaurants/AddRestaurant";
 import UpdateRestaurant from "./components/Admin/Restaurants/UpdateRestaurant";
 import ManageTables from "./components/Admin/Tables/ManageTables";
+import AddTable from "./components/Admin/Tables/AddTable";
+import UpdateTable from "./components/Admin/Tables/UpdateTable";
 
 function App() {
   return (
@@ -38,6 +40,8 @@ function App() {
           element={<UpdateRestaurant />}
         />
         <Route path="/managetables" element={<ManageTables />} />
+        <Route path="/managetables/addtable" element={<AddTable />} />
+        <Route path="/managetables/updatetable/:id" element={<UpdateTable />} />
       </Routes>
     </Router>
   );

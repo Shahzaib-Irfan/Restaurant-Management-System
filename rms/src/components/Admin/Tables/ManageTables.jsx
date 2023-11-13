@@ -4,7 +4,7 @@ import plus from "../../../assets/icons/plus.svg";
 import deleteImage from "../../../assets/icons/delete.svg";
 import edit from "../../../assets/icons/edit.svg";
 import { Link } from "react-router-dom";
-import DisplayRestaurant from "./DisplayRestaurant";
+import DisplayTable from "./DisplayTable";
 import { useTablesContext } from "../../../contexts/TableContext";
 
 const AdminTables = () => {
@@ -71,7 +71,7 @@ const AdminTables = () => {
                       reservationStatus,
                     } = table;
                     return (
-                      <DisplayRestaurant
+                      <DisplayTable
                         _id={_id}
                         tableNo={tableNo}
                         restaurantID={restaurantID}

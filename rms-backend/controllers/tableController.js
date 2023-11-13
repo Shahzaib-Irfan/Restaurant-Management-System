@@ -2,13 +2,13 @@ const Table = require("../models/table");
 
 async function createTable(req, res) {
   try {
-    const { tableNo, restaurantID, capacity, reservationStatus } = req.body;
+    const { tableNo, restaurantID, capacity } = req.body;
 
     const tableData = {
-      tableNo,
-      restaurantID,
-      capacity,
-      reservationStatus,
+      tableNo: tableNo,
+      restaurantID: restaurantID,
+      capacity: capacity,
+      reservationStatus: true,
     };
 
     const savedTable = await Table.create(tableData);
@@ -49,7 +49,7 @@ async function updateTable(req, res) {
         tableNo: req.body["tableNo"],
         restaurantID: req.body["restaurantID"],
         capacity: req.body["capacity"],
-        reservationStatus: req.body["reservationStatus"],
+        reservationStatus: true,
       }
     );
     res.status(201).json(table);

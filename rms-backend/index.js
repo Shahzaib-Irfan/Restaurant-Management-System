@@ -14,7 +14,7 @@ const dishRoutes = require("./routes/dishRoutes");
 const userRoutes = require("./routes/userRoutes");
 const restaurantRoutes = require("./routes/restaurantRoutes");
 const tableRoutes = require("./routes/tableRoutes");
-// const loginRoutes = require("./routes/loginRoutes");
+const employeeRoutes = require("./routes/employeeRoutes");
 const port = 3005;
 
 app.use(cors());
@@ -24,7 +24,7 @@ app.use("/dishApi", dishRoutes);
 app.use("/userApi", userRoutes);
 app.use("/restaurantApi", restaurantRoutes);
 app.use("/tableApi", tableRoutes);
-// app.use("/purchaseHistoryApi", purchaseRoutes);
+app.use("/employeeApi", employeeRoutes);
 // app.use("/loginApi", loginRoutes);
 app.get("/", (req, res) => {
   res.send("Hello World");

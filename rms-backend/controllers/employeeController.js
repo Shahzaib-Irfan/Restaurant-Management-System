@@ -9,7 +9,7 @@ async function createEmployee(req, res) {
   }
 }
 
-async function getEmployee(req, res) {
+async function getEmployees(req, res) {
   try {
     const employees = await Employee.find({});
     res.send(employees);
@@ -19,9 +19,19 @@ async function getEmployee(req, res) {
   }
 }
 
+async function getEmployee(req, res) {
+  try {
+    const id = req.params.id;
+    const employee = await Employee.findById(id);
+    res.send(employee);
+  } catch (err) {
+    console.log(err);
+    res.send(500).json({ error: err.message });
+  }
+}
+
 async function updateEmployee(req, res) {
   try {
-    console.log(req.params["id"]);
     const employee = await Employee.updateOne(
       { _id: req.params["id"] },
       req.body
@@ -43,6 +53,7 @@ async function deleteEmployee(req, res) {
 
 module.exports = {
   createEmployee,
+  getEmployees,
   getEmployee,
   updateEmployee,
   deleteEmployee,

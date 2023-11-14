@@ -37,14 +37,20 @@ const Employee = ({
       <RoomWrapper>
         <div className="room-box">
           <div className="room-box-footer">
-            <p style={{ color: "green" }}>{firstName}</p>
-            <p style={{ color: "green" }}>{lastName}</p>
+            <div>
+              <p style={{ color: "green" }}>{firstName}</p>
+            </div>
+            <div>{"-"}</div>
+            <div>
+              <p style={{ color: "green" }}>{lastName}</p>
+            </div>
           </div>
           <div>
             <p style={{ color: "blue" }}>{contact}</p>
           </div>
           <div className="room-box-footer">
-            <p style={{ color: "grey" }}>{hireDate}</p>
+            <p style={{ color: "grey" }}>{hireDate.slice(0, 10)}</p>
+            <p>{"-"}</p>
             <p style={{ color: "grey" }}>{position}</p>
           </div>
           <div>
@@ -97,6 +103,7 @@ const RoomWrapper = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 10px;
+    margin: 10px;
     gap: 2;
   }
   .btn {

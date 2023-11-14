@@ -17,6 +17,7 @@ import ManageTables from "./components/Admin/Tables/ManageTables";
 import AddTable from "./components/Admin/Tables/AddTable";
 import UpdateTable from "./components/Admin/Tables/UpdateTable";
 import ManageEmployees from "./components/Admin/Employee/ManageEmployees";
+import AddEmployee from "./components/Admin/Employee/AddEmployee";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         <Route path="/managetables/addtable" element={<AddTable />} />
         <Route path="/managetables/updatetable/:id" element={<UpdateTable />} />
         <Route path="/manageemployees" element={<ManageEmployees />} />
+        <Route path="/manageemployees/addemployee" element={<AddEmployee />} />
       </Routes>
     </Router>
   );

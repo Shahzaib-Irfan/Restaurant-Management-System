@@ -8,8 +8,13 @@ import Loading from "../../../constants/Loading";
 
 const UpdateEmployee = () => {
   const { id } = useParams();
-  const { loading, singleEmployee, fetchSingleEmployee, singleEmployeeError } =
-    useEmployeesContext();
+  const {
+    loading,
+    singleEmployee,
+    fetchSingleEmployee,
+    singleEmployeeError,
+    singleEmployeeLoading,
+  } = useEmployeesContext();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -22,28 +27,57 @@ const UpdateEmployee = () => {
     fetchSingleEmployee(
       `http://localhost:3005/employeeApi/employees/getSingleEmployee/${id}`
     );
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     if (singleEmployee) {
-      setFormData({
-        firstName: singleEmployee["firstName"],
-        lastName: singleEmployee["lastName"],
-        contact: singleEmployee["contact"],
-        hireDate: singleEmployee["hireDate"],
-        position: singleEmployee["position"],
-      });
+      singleEmployee.hireDate &&
+        setFormData({
+          firstName: singleEmployee["firstName"],
+          lastName: singleEmployee["lastName"],
+          contact: singleEmployee["contact"],
+          hireDate: singleEmployee["hireDate"].slice(0, 10),
+          position: singleEmployee["position"],
+        });
     }
   }, [fetchSingleEmployee]);
+  useEffect(() => {
+    console.log(singleEmployee);
+  }, [singleEmployee]);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     console.log(formData);
     setFormData({ ...formData, [name]: value });
   };
 
-  if (loading || singleEmployeeError) {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const formDataForSubmit = new FormData();
+
+      for (const key in formData) {
+        formDataForSubmit.append(key, formData[key]);
+      }
+
+      const response = await fetch(
+        `http://localhost:3005/employeeApi/employees/updateEmployee/${id}`,
+        {
+          method: "POST",
+          body: formDataForSubmit,
+        }
+      );
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  };
+
+  if (!formData || singleEmployeeLoading || singleEmployeeError) {
     return <Loading />;
-  } else {
+  } else if (singleEmployee) {
     return (
       <>
         <AddRoomContainer>
@@ -63,9 +97,10 @@ const UpdateEmployee = () => {
                   class="form-control"
                   id="floatingInput"
                   placeholder="First Name"
+                  value={formData.firstName}
                   onChange={handleInputChange}
                 />
-                <label for="floatingInput">First Name</label>
+                <label for="floatingInput">{formData.firstName}</label>
               </div>
               <div class="form-floating mb-3">
                 <input
@@ -74,9 +109,10 @@ const UpdateEmployee = () => {
                   class="form-control"
                   id="floatingInput"
                   placeholder="Last Name"
+                  value={formData.lastName}
                   onChange={handleInputChange}
                 />
-                <label for="floatingInput">Last Name</label>
+                <label for="floatingInput">{formData.lastName}</label>
               </div>
 
               <div class="form-floating mb-3">
@@ -86,22 +122,40 @@ const UpdateEmployee = () => {
                   class="form-control"
                   id="InputIngredients"
                   placeholder="Contact Information"
+                  value={formData.contact}
                   onChange={handleInputChange}
                 />
-                <label for="InputIngredients">Contact Information</label>
+                <label for="InputIngredients">{formData.contact}</label>
               </div>
-
-              <div class="form-floating mb-3">
-                <input
-                  type="date"
-                  name="hireDate"
-                  class="form-control"
-                  id="InputIngredients"
-                  placeholder="Hire Date"
-                  onChange={handleInputChange}
-                />
-                <label for="InputIngredients">Hire Date</label>
-              </div>
+              {formData.hireDate ? (
+                <div class="form-floating mb-3">
+                  <input
+                    type="date"
+                    name="hireDate"
+                    class="form-control"
+                    id="InputIngredients"
+                    placeholder="Hire Date"
+                    value={formData.hireDate}
+                    onChange={handleInputChange}
+                  />
+                  <label for="InputIngredients">
+                    {formData.hireDate.slice(0, 10)}
+                  </label>
+                </div>
+              ) : (
+                <div class="form-floating mb-3">
+                  <input
+                    type="date"
+                    name="hireDate"
+                    class="form-control"
+                    id="InputIngredients"
+                    placeholder="Hire Date"
+                    value={formData.hireDate}
+                    onChange={handleInputChange}
+                  />
+                  <label for="InputIngredients">{formData.hireDate}</label>
+                </div>
+              )}
 
               <div class="form-floating mb-3">
                 <input
@@ -110,12 +164,13 @@ const UpdateEmployee = () => {
                   class="form-control"
                   id="InputIngredients"
                   placeholder="Position"
+                  value={formData.position}
                   onChange={handleInputChange}
                 />
-                <label for="InputIngredients">Position</label>
+                <label for="InputIngredients">{formData.position}</label>
               </div>
               <button className="cool-button" type="submit">
-                Add Table
+                Update Employee
               </button>
             </form>
           </article>

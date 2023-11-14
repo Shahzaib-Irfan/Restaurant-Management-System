@@ -113,7 +113,7 @@ const AddEmployee = () => {
               <label for="InputIngredients">Position</label>
             </div>
             <button className="cool-button" type="submit">
-              Add Table
+              Add Employee
             </button>
           </form>
         </article>

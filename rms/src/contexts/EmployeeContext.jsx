@@ -50,7 +50,6 @@ export const EmployeesProvider = ({ children }) => {
     try {
       const response = await axios.get(url);
       const data = await response.data;
-      console.log(data);
       dispatch({ type: GET_SINGLE_EMPLOYEE_SUCCESS, payload: data });
     } catch (error) {
       console.log(error);

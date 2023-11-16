@@ -15,6 +15,7 @@ const userRoutes = require("./routes/userRoutes");
 const restaurantRoutes = require("./routes/restaurantRoutes");
 const tableRoutes = require("./routes/tableRoutes");
 const employeeRoutes = require("./routes/employeeRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 const port = 3005;
 
 app.use(cors());
@@ -25,7 +26,7 @@ app.use("/userApi", userRoutes);
 app.use("/restaurantApi", restaurantRoutes);
 app.use("/tableApi", tableRoutes);
 app.use("/employeeApi", employeeRoutes);
-// app.use("/loginApi", loginRoutes);
+app.use("/orderApi", orderRoutes);
 app.get("/", (req, res) => {
   res.send("Hello World");
 });

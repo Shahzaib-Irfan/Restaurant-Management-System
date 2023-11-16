@@ -44,6 +44,16 @@ async function getDishes(req, res) {
   }
 }
 
+async function getDishesByRID(req, res) {
+  try {
+    const products = await Dish.find({ restaurantID: req.params["id"] });
+    res.send(products);
+  } catch (err) {
+    console.log(err);
+    res.send(500).json({ error: err.message });
+  }
+}
+
 async function getDish(req, res) {
   try {
     const id = req.params.id;
@@ -88,6 +98,7 @@ async function deleteDish(req, res) {
 module.exports = {
   createDish,
   getDishes,
+  getDishesByRID,
   getDish,
   updateDish,
   deleteDish,

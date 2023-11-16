@@ -6,6 +6,7 @@ const upload = require("../utils/uploadMiddleware");
 
 router.post("/dishes", upload.single("image"), dishController.createDish);
 router.get("/dishes/getDishes", dishController.getDishes);
+router.get("/dishes/getDishesByRID/:id", dishController.getDishesByRID);
 router.get("/dishes/getSingleDish/:id", dishController.getDish);
 router.post(
   "/dishes/updateDish/:id",

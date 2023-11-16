@@ -42,6 +42,19 @@ export const DishesProvider = ({ children }) => {
       dispatch({ type: GET_DISH_ERROR });
     }
   };
+
+  const fetchDishesByRID = async (id) => {
+    dispatch({ type: GET_DISH_BEGIN });
+    try {
+      const response = await axios.get(
+        `http://localhost:3005/dishApi/dishes/getDishesByRID/${id}`
+      );
+      const data = await response.data;
+      dispatch({ type: GET_DISH_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({ type: GET_DISH_ERROR });
+    }
+  };
   useEffect(() => {
     fetchDishes();
   }, []);
@@ -58,7 +71,13 @@ export const DishesProvider = ({ children }) => {
   };
   return (
     <DishesContext.Provider
-      value={{ ...state, fetchSingleDish, fetchDishes, handleSetModeUpdate }}
+      value={{
+        ...state,
+        fetchSingleDish,
+        fetchDishes,
+        handleSetModeUpdate,
+        fetchDishesByRID,
+      }}
     >
       {children}
     </DishesContext.Provider>

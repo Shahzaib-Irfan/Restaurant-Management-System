@@ -3,6 +3,7 @@ import "./App.css";
 import LandingPage from "./pages/LandingPage";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
+import NavbarUser from "./components/NavbarUser";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
@@ -19,11 +20,13 @@ import UpdateTable from "./components/Admin/Tables/UpdateTable";
 import ManageEmployees from "./components/Admin/Employee/ManageEmployees";
 import AddEmployee from "./components/Admin/Employee/AddEmployee";
 import UpdateEmployee from "./components/Admin/Employee/UpdateEmployee";
+import MainPage from "./components/User/ItemSelection/MainPage";
+import Dishes from "./components/User/ItemSelection/Dishes";
 
 function App() {
   return (
     <Router>
-      <Navbar />
+      <NavbarUser />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route exact path="/home" element={<Home />} />
@@ -51,6 +54,8 @@ function App() {
           path="/manageemployees/updateemployee/:id"
           element={<UpdateEmployee />}
         />
+        <Route path="/itemselection/restaurants" element={<MainPage />} />
+        <Route path="/itemselection/restaurants/:id" element={<Dishes />} />
       </Routes>
     </Router>
   );

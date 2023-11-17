@@ -2,15 +2,16 @@ const Order = require("../models/order");
 
 async function createOrder(req, res) {
   try {
-    const { userID, restaurantID, orderDate, totalAmount, status } = req.body;
+    const { userID, dishID, restaurantID, orderDate, totalAmount, status } =
+      req.body;
 
     const orderData = {
       userID,
+      dishID,
       restaurantID,
       orderDate,
       totalAmount,
       status,
-      order,
     };
 
     const savedOrder = await Order.create(orderData);
@@ -49,6 +50,7 @@ async function updateOrder(req, res) {
       { _id: req.params["id"] },
       {
         userID: req.body["userID"],
+        dishID: req.body["dishID"],
         restaurantID: req.body["restaurantID"],
         orderDate: req.body["orderDate"],
         totalAmount: req.body["totalAmount"],

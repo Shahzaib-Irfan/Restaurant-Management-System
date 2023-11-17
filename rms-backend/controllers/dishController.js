@@ -27,7 +27,7 @@ async function createDish(req, res) {
 
     const savedDish = await Dish.create(dishData);
 
-    res.status(201).json(savedDish);
+    res.status(201).redirect("http://localhost:3000/managedishes");
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: err.message });

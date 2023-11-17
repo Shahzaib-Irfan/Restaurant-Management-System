@@ -38,8 +38,7 @@ async function getRestaurant(req, res) {
     const restaurant = await Restaurant.findById(id);
     res.send(restaurant);
   } catch (err) {
-    console.log(err);
-    res.send(500).json({ error: err.message });
+    res.status(500).json({ error: err.message });
   }
 }
 

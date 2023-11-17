@@ -1,43 +1,68 @@
-import React from "react";
+import { React, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useDishesContext } from "../../../contexts/DishContext";
-const Dish = ({
-  _id,
-  name,
-  ingredients,
-  description,
-  price,
-  image,
-  restaurantID,
-}) => {
-  return (
-    <>
-      <RoomWrapper>
-        <div className="room-box">
-          <img
-            onClick={() => {}}
-            src={`http://localhost:3005/images/${image}`}
-            alt={name}
-            style={{ cursor: "pointer" }}
-          />
-          <div className="room-box-footer">
-            <p style={{ color: "green" }}>{name}</p>
-            <p style={{ marginLeft: "40px" }}>{"Rs. " + price + "/-"} </p>
+import { useCartContext } from "../../../contexts/CartContext";
+import { useRestaurantsContext } from "../../../contexts/RestaurantContext";
+import Loading from "../../../constants/Loading";
+const Dish = (
+  { _id, name, ingredients, description, price, image, restaurantID },
+  dish
+) => {
+  const { addToCart } = useCartContext();
+  const {
+    singleRestaurant,
+    fetchSingleRestaurant,
+    singleRestaurantError,
+    loading,
+  } = useRestaurantsContext();
+  useEffect(() => {
+    if (restaurantID !== "") {
+      fetchSingleRestaurant(
+        `http://localhost:3005/restaurantApi/restaurants/getSingleRestaurant/${restaurantID}`
+      );
+    }
+  }, [restaurantID]);
+  if (singleRestaurantError) {
+    return <Loading />;
+  } else {
+    return (
+      <>
+        <RoomWrapper>
+          <div className="room-box">
+            <img
+              onClick={() => {}}
+              src={`http://localhost:3005/images/${image}`}
+              alt={name}
+              style={{ cursor: "pointer" }}
+            />
+            <div className="room-box-footer">
+              <p style={{ color: "green" }}>{name}</p>
+              <p style={{ marginLeft: "40px" }}>{"Rs. " + price + "/-"} </p>
+            </div>
+            <div className="room-box-footer">
+              <Link
+                to={`/itemselection/restaurants/${restaurantID}/${_id}`}
+                className="btn"
+              >
+                Details
+              </Link>
+              <button
+                className="btn"
+                onClick={() =>
+                  addToCart(_id, singleRestaurant["name"], Date.now(), price, {
+                    name: name,
+                  })
+                }
+              >
+                Add to Cart
+              </button>
+            </div>
           </div>
-          <div className="room-box-footer">
-            <Link
-              to={`/itemselection/restaurants/${restaurantID}/${_id}`}
-              className="btn"
-            >
-              Details
-            </Link>
-            <button className="btn">Add to Cart</button>
-          </div>
-        </div>
-      </RoomWrapper>
-    </>
-  );
+        </RoomWrapper>
+      </>
+    );
+  }
 };
 
 const RoomWrapper = styled.div`

@@ -22,6 +22,7 @@ import AddEmployee from "./components/Admin/Employee/AddEmployee";
 import UpdateEmployee from "./components/Admin/Employee/UpdateEmployee";
 import MainPage from "./components/User/ItemSelection/MainPage";
 import Dishes from "./components/User/ItemSelection/Dishes";
+import SingleDish from "./components/Admin/Dishes/SingleDish";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/managedishes" element={<AdminDishes />} />
         <Route path="/managedishes/adddish" element={<AddDish />} />
+        <Route path="/managedishes/viewdish/:id" element={<SingleDish />} />
         <Route path="/managedishes/updatedish/:id" element={<UpdateDish />} />
         <Route path="/managerestaurants" element={<ManageRestaurants />} />
         <Route

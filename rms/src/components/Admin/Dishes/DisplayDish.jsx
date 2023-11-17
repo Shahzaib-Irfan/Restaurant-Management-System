@@ -40,7 +40,7 @@ const Dish = ({ _id, name, ingredients, description, price, image }) => {
             <p style={{ marginLeft: "40px" }}>{"Rs. " + price + "/-"} </p>
           </div>
           <div>
-            <Link to={``} className="btn">
+            <Link to={`/managedishes/viewdish/${_id}`} className="btn">
               Details
             </Link>
             {setMode === "Update" ? (

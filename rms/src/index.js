@@ -7,18 +7,21 @@ import { DishesProvider } from "./contexts/DishContext";
 import { RestaurantsProvider } from "./contexts/RestaurantContext";
 import { TablesProvider } from "./contexts/TableContext";
 import { EmployeesProvider } from "./contexts/EmployeeContext";
+import { CartProvider } from "./contexts/CartContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <EmployeesProvider>
-    <RestaurantsProvider>
-      <TablesProvider>
-        <DishesProvider>
-          <App />
-        </DishesProvider>
-      </TablesProvider>
-    </RestaurantsProvider>
-  </EmployeesProvider>
+  <CartProvider>
+    <EmployeesProvider>
+      <RestaurantsProvider>
+        <TablesProvider>
+          <DishesProvider>
+            <App />
+          </DishesProvider>
+        </TablesProvider>
+      </RestaurantsProvider>
+    </EmployeesProvider>
+  </CartProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -1,10 +1,18 @@
 const User = require("../models/user");
 const crypto = require("crypto");
 const secretKey = crypto.randomBytes(32).toString("hex");
+const jwt = require("jsonwebtoken");
 
 async function createUser(req, res) {
   try {
-    const user = await User.create(req.body);
+    let user;
+
+    if (req.body["role"]) {
+      user = await User.create(req.body);
+    } else {
+      user = await User.create({ ...req.body, role: "user" });
+    }
+
     res.status(201).redirect("http://localhost:3000/itemselection/restaurants");
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -52,7 +60,10 @@ async function login(req, res) {
         expiresIn: "1h",
       }
     );
-    res.json({ token, user: { username: user.username, role: user.role } });
+    res.json({
+      token,
+      user: { username: user.username, id: user._id, role: user.role },
+    });
   } else {
     res.status(401).json({ message: "Invalid credentials" });
   }

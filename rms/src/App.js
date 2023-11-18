@@ -1,8 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import LandingPage from "./pages/LandingPage";
-import Navbar from "./components/Navbar";
-import NavbarUser from "./components/NavbarUser";
+import Navbar from "./utils/Navbar";
 import Home from "./pages/Home";
 import AboutUs from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
@@ -32,7 +31,7 @@ function App() {
   return (
     <Router>
       <div>
-        <NavbarUser />
+        <Navbar />
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route exact path="/home" element={<Home />} />

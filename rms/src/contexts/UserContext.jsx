@@ -40,8 +40,14 @@ export const UserProvider = ({ children }) => {
       });
     }
   };
+  const logout = async () => {
+    dispatch({
+      type: GET_SINGLE_USER_SUCCESS,
+      payload: { user: {}, token: "" },
+    });
+  };
   return (
-    <UserContext.Provider value={{ ...state, loginWithAuthentication }}>
+    <UserContext.Provider value={{ ...state, loginWithAuthentication, logout }}>
       {children}
     </UserContext.Provider>
   );

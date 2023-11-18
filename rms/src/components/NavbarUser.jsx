@@ -1,8 +1,8 @@
 import React from "react";
-// import { useAuthContext } from "../contexts/AuthContext";
+import { useUserContext } from "../contexts/UserContext";
 import { Link, useLocation } from "react-router-dom";
 const AdminNavbar = () => {
-  //   const { loginWithRedirect, isAuthenticated, logout, user } = useAuthContext();
+  const { currentUser, logout, token } = useUserContext();
   return (
     <nav
       style={{
@@ -64,16 +64,24 @@ const AdminNavbar = () => {
                 alt={user.name}
                 style={{ width: "40px", height: "40px", borderRadius: "50%" }}
               /> */}
-              <button
-                style={{ marginLeft: "10px" }}
-                // onClick={() =>
-                //   logout({ logoutParams: { returnTo: window.location.origin } })
-                // }
-                className="btn btn-outline-warning"
-                type="submit"
-              >
-                Logout
-              </button>
+              {token !== "" ? (
+                <Link
+                  style={{ marginLeft: "10px" }}
+                  onClick={() => logout()}
+                  className="btn btn-outline-warning"
+                  type="submit"
+                >
+                  Logout
+                </Link>
+              ) : (
+                <Link
+                  style={{ marginLeft: "10px" }}
+                  to={"login"}
+                  className="btn btn-outline-warning"
+                >
+                  Login
+                </Link>
+              )}
             </div>
           </form>
         </div>

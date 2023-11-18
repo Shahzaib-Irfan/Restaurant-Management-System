@@ -8,20 +8,23 @@ import { RestaurantsProvider } from "./contexts/RestaurantContext";
 import { TablesProvider } from "./contexts/TableContext";
 import { EmployeesProvider } from "./contexts/EmployeeContext";
 import { CartProvider } from "./contexts/CartContext";
+import { UserProvider } from "./contexts/UserContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <CartProvider>
-    <EmployeesProvider>
-      <RestaurantsProvider>
-        <TablesProvider>
-          <DishesProvider>
-            <App />
-          </DishesProvider>
-        </TablesProvider>
-      </RestaurantsProvider>
-    </EmployeesProvider>
-  </CartProvider>
+  <UserProvider>
+    <CartProvider>
+      <EmployeesProvider>
+        <RestaurantsProvider>
+          <TablesProvider>
+            <DishesProvider>
+              <App />
+            </DishesProvider>
+          </TablesProvider>
+        </RestaurantsProvider>
+      </EmployeesProvider>
+    </CartProvider>
+  </UserProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

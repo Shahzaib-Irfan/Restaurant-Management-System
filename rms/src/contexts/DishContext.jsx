@@ -65,7 +65,6 @@ export const DishesProvider = ({ children }) => {
       const data = await response.data;
       dispatch({ type: GET_SINGLE_DISH_SUCCESS, payload: data });
     } catch (error) {
-      console.log(error);
       dispatch({ type: GET_SINGLE_DISH_ERROR });
     }
   };

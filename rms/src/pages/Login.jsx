@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useUserContext } from "../contexts/UserContext";
 
 class Login extends React.Component {
   render() {
@@ -14,32 +15,70 @@ class Login extends React.Component {
 
 const FormHeader = (props) => <h2 id="headerTitle">{props.title}</h2>;
 
-const Form = (props) => (
-  <div>
-    <FormInput
-      description="Username"
-      placeholder="Enter your username"
-      type="text"
-    />
-    <FormInput
-      description="Password"
-      placeholder="Enter your password"
-      type="password"
-    />
-    <FormButton title="Log in" />
-  </div>
-);
+const Form = (props) => {
+  const { loginWithAuthentication } = useUserContext();
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: "",
+  });
 
-const FormButton = (props) => (
-  <div id="button" class="row">
-    <button>{props.title}</button>
-  </div>
-);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setCredentials({ ...credentials, [name]: value });
+  };
+
+  return (
+    <div>
+      <FormInput
+        description="Username"
+        placeholder="Enter your username"
+        type="text"
+        name="username"
+        onChange={handleInputChange}
+      />
+      <FormInput
+        description="Password"
+        placeholder="Enter your password"
+        type="password"
+        name="password"
+        onChange={handleInputChange}
+      />
+      <FormButton
+        title="Log in"
+        credentials={credentials}
+        loginWithAuthentication={loginWithAuthentication}
+      />
+    </div>
+  );
+};
+
+const FormButton = (props) => {
+  const { loginWithAuthentication } = useUserContext();
+
+  const handleLogin = async () => {
+    await props.loginWithAuthentication(
+      props.credentials.username,
+      props.credentials.password
+    );
+    // Optionally, you can add further logic or redirection after successful login.
+  };
+
+  return (
+    <div id="button" className="row">
+      <button onClick={handleLogin}>{props.title}</button>
+    </div>
+  );
+};
 
 const FormInput = (props) => (
-  <div class="row">
+  <div className="row">
     <label>{props.description}</label>
-    <input type={props.type} placeholder={props.placeholder} />
+    <input
+      type={props.type}
+      placeholder={props.placeholder}
+      name={props.name}
+      onChange={props.onChange}
+    />
   </div>
 );
 

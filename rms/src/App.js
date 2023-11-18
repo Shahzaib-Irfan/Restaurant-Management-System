@@ -23,6 +23,7 @@ import UpdateEmployee from "./components/Admin/Employee/UpdateEmployee";
 import MainPage from "./components/User/ItemSelection/MainPage";
 import Dishes from "./components/User/ItemSelection/Dishes";
 import SingleDish from "./components/Admin/Dishes/SingleDish";
+import CartPage from "./pages/CartPage";
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
         />
         <Route path="/itemselection/restaurants" element={<MainPage />} />
         <Route path="/itemselection/restaurants/:id" element={<Dishes />} />
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
     </Router>
   );

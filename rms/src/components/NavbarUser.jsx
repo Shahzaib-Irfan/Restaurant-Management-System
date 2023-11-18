@@ -40,8 +40,8 @@ const AdminNavbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" to="managerestaurants">
-                Restaurants
+              <Link className="nav-link active" to="cart">
+                Cart
               </Link>
             </li>
             <li className="nav-item">

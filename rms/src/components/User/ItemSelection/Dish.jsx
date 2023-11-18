@@ -50,8 +50,9 @@ const Dish = (
               <button
                 className="btn"
                 onClick={() =>
-                  addToCart(_id, singleRestaurant["name"], Date.now(), price, {
+                  addToCart(_id, singleRestaurant["name"], Date.now(), 1, {
                     name: name,
+                    price: price,
                   })
                 }
               >

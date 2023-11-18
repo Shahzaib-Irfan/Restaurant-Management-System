@@ -1,7 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
 import LandingPage from "./pages/LandingPage";
-import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import NavbarUser from "./components/NavbarUser";
 import Home from "./pages/Home";
@@ -24,43 +23,56 @@ import MainPage from "./components/User/ItemSelection/MainPage";
 import Dishes from "./components/User/ItemSelection/Dishes";
 import SingleDish from "./components/Admin/Dishes/SingleDish";
 import CartPage from "./pages/CartPage";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
+
+import "./App.css";
 
 function App() {
   return (
     <Router>
-      <NavbarUser />
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route exact path="/home" element={<Home />} />
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/contact" element={<ContactPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/managedishes" element={<AdminDishes />} />
-        <Route path="/managedishes/adddish" element={<AddDish />} />
-        <Route path="/managedishes/viewdish/:id" element={<SingleDish />} />
-        <Route path="/managedishes/updatedish/:id" element={<UpdateDish />} />
-        <Route path="/managerestaurants" element={<ManageRestaurants />} />
-        <Route
-          path="/managerestaurants/addrestaurant"
-          element={<AddRestaurant />}
-        />
-        <Route
-          path="/managerestaurants/updaterestaurant/:id"
-          element={<UpdateRestaurant />}
-        />
-        <Route path="/managetables" element={<ManageTables />} />
-        <Route path="/managetables/addtable" element={<AddTable />} />
-        <Route path="/managetables/updatetable/:id" element={<UpdateTable />} />
-        <Route path="/manageemployees" element={<ManageEmployees />} />
-        <Route path="/manageemployees/addemployee" element={<AddEmployee />} />
-        <Route
-          path="/manageemployees/updateemployee/:id"
-          element={<UpdateEmployee />}
-        />
-        <Route path="/itemselection/restaurants" element={<MainPage />} />
-        <Route path="/itemselection/restaurants/:id" element={<Dishes />} />
-        <Route path="/cart" element={<CartPage />} />
-      </Routes>
+      <div>
+        <NavbarUser />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route exact path="/home" element={<Home />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/managedishes" element={<AdminDishes />} />
+          <Route path="/managedishes/adddish" element={<AddDish />} />
+          <Route path="/managedishes/viewdish/:id" element={<SingleDish />} />
+          <Route path="/managedishes/updatedish/:id" element={<UpdateDish />} />
+          <Route path="/managerestaurants" element={<ManageRestaurants />} />
+          <Route
+            path="/managerestaurants/addrestaurant"
+            element={<AddRestaurant />}
+          />
+          <Route
+            path="/managerestaurants/updaterestaurant/:id"
+            element={<UpdateRestaurant />}
+          />
+          <Route path="/managetables" element={<ManageTables />} />
+          <Route path="/managetables/addtable" element={<AddTable />} />
+          <Route
+            path="/managetables/updatetable/:id"
+            element={<UpdateTable />}
+          />
+          <Route path="/manageemployees" element={<ManageEmployees />} />
+          <Route
+            path="/manageemployees/addemployee"
+            element={<AddEmployee />}
+          />
+          <Route
+            path="/manageemployees/updateemployee/:id"
+            element={<UpdateEmployee />}
+          />
+          <Route path="/itemselection/restaurants" element={<MainPage />} />
+          <Route path="/itemselection/restaurants/:id" element={<Dishes />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/signup" element={<SignUp />} />
+        </Routes>
+      </div>
     </Router>
   );
 }

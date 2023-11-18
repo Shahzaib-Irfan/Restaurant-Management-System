@@ -1,9 +1,11 @@
 const User = require("../models/user");
+const crypto = require("crypto");
+const secretKey = crypto.randomBytes(32).toString("hex");
 
 async function createUser(req, res) {
   try {
     const user = await User.create(req.body);
-    res.status(201).json(user);
+    res.status(201).redirect("http://localhost:3000/itemselection/restaurants");
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -38,6 +40,23 @@ async function deleteUser(req, res) {
   }
 }
 
+async function login(req, res) {
+  const { username, password } = req.body;
+  const user = await User.findOne({ username, password });
+
+  if (user) {
+    const token = jwt.sign(
+      { username: user.username, id: user._id, role: user.role },
+      secretKey,
+      {
+        expiresIn: "1h",
+      }
+    );
+    res.json({ token, user: { username: user.username, role: user.role } });
+  } else {
+    res.status(401).json({ message: "Invalid credentials" });
+  }
+}
 async function adminDasboard(req, res) {
   res.send("Welcome to Admin Dashboard");
 }
@@ -47,5 +66,6 @@ module.exports = {
   getUser,
   updateUser,
   deleteUser,
+  login,
   adminDasboard,
 };

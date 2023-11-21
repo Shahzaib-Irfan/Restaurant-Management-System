@@ -1,10 +1,38 @@
 import React from "react";
+import axios from "axios";
 import styled from "styled-components";
 import { useCartContext } from "../../../contexts/CartContext";
 import { Link } from "react-router-dom";
+import { useUserContext } from "../../../contexts/UserContext";
 
 const CartTotals = () => {
-  const { amountPayable, shippingFee } = useCartContext();
+  const { amountPayable, shippingFee, cart } = useCartContext();
+  const { currentUser, loginWithAuthentication, token } = useUserContext();
+  const pay = async () => {
+    try {
+      const updateCart = { cart: cart, user: currentUser.id };
+      console.log(cart);
+      const response = await axios.post(
+        "http://localhost:3005/paymentApi/pay",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: updateCart,
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("An error occurred while posting the data.", error);
+    }
+  };
   return (
     <Wrapper>
       <div>
@@ -20,15 +48,15 @@ const CartTotals = () => {
             order total: <span>{amountPayable + shippingFee}</span>
           </h4>
         </article>
-        {/* {currentUser ? (
-          <Link to="/checkout" className="btn">
+        {token !== "" ? (
+          <button onClick={() => pay()} className="btn2">
             checkout
-          </Link>
-        ) : (
-          <button onClick={() => loginWithRedirect()} className="btn">
-            login
           </button>
-        )} */}
+        ) : (
+          <Link to={"/login"} className="btn2">
+            login
+          </Link>
+        )}
       </div>
     </Wrapper>
   );

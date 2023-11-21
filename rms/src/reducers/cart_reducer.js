@@ -30,9 +30,7 @@ const cart_reducer = (state, action) => {
         date,
         dish,
         amount,
-        name: dish.name ? dish.name : "",
         image: dish.images,
-        price: dish.price,
       };
       return { ...state, cart: [...state.cart, newProduct] };
     }
@@ -75,9 +73,9 @@ const cart_reducer = (state, action) => {
     const { cart } = state;
     const { totalItems, amountPayable } = cart.reduce(
       (total, item) => {
-        const { amount, price } = item;
+        const { amount, dish } = item;
         total.totalItems += amount;
-        total.amountPayable += price * amount;
+        total.amountPayable += dish.price * amount;
         return total;
       },
       { totalItems: 0, amountPayable: 0 }

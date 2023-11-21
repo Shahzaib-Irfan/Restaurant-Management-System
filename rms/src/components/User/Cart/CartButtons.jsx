@@ -3,12 +3,14 @@ import { FaShoppingCart, FaUserMinus, FaUserPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import undefinedUser from "../../../assets/undefinedUser.jpeg";
-import { useDishesContext } from "../../../contexts/DishContext";
 import { useCartContext } from "../context/cart_context";
+import { useUserContext } from "../../../contexts/UserContext";
 import { GiButtonFinger } from "react-icons/gi";
 
 const CartButtons = () => {
   const { totalItems, clearCart } = useCartContext();
+  const { currentUser, token, logout, loginWithAuthentication } =
+    useUserContext();
   return (
     <Wrapper className="cart-btn-wrapper">
       <Link to="/cart" className="cart-btn">
@@ -18,34 +20,28 @@ const CartButtons = () => {
           <span className="cart-value">{totalItems}</span>
         </span>
       </Link>
-      {/* {currentUser ? (
+      {token !== "" ? (
         <>
           <button
             className="auth-btn"
             type="button"
             onClick={() => {
               clearCart();
-              localStorage.removeItem("user");
-              logout({ returnTo: window.location.origin });
+              logout();
             }}
           >
             Logout
-            {currentUser.picture ? (
-              <img src={currentUser.picture} alt="" className="avatar" />
-            ) : (
-              <img src={undefinedUser} alt="" className="avatar" />
-            )}
           </button>
         </>
       ) : (
         <button
           className="auth-btn"
           type="button"
-          onClick={() => loginWithRedirect()}
+          onClick={() => loginWithAuthentication()}
         >
           Login <FaUserPlus />
         </button>
-      )} */}
+      )}
     </Wrapper>
   );
 };

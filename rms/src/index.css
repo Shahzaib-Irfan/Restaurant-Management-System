@@ -189,8 +189,7 @@ p {
   border-top-color: var(--clr-primary-5);
   animation: spinner 0.6s linear infinite;
 }
-
-/* .btn {
+ .btn2 {
   text-transform: uppercase;
   background: var(--clr-primary-5);
   color: var(--clr-primary-10);
@@ -206,10 +205,10 @@ p {
   border-color: transparent;
 }
 
-.btn:hover {
+.btn2:hover {
   color: var(--clr-primary-1);
   background: var(--clr-primary-7);
-} */
+}
 
 .title {
   text-align: center;

@@ -4,6 +4,7 @@ const orderSchema = new mongoose.Schema(
   {
     userID: String,
     restaurantID: String,
+    dishID: String,
     orderDate: Date,
     totalAmount: Number,
     status: Boolean,

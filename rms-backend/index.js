@@ -16,6 +16,7 @@ const restaurantRoutes = require("./routes/restaurantRoutes");
 const tableRoutes = require("./routes/tableRoutes");
 const employeeRoutes = require("./routes/employeeRoutes");
 const orderRoutes = require("./routes/orderRoutes");
+const stripe = require("./stripe");
 const port = 3005;
 const crypto = require("crypto");
 const secretKey = crypto.randomBytes(32).toString("hex");
@@ -29,6 +30,7 @@ app.use("/restaurantApi", restaurantRoutes);
 app.use("/tableApi", tableRoutes);
 app.use("/employeeApi", employeeRoutes);
 app.use("/orderApi", orderRoutes);
+app.use("/paymentApi", stripe);
 app.get("/", (req, res) => {
   res.send("Hello World");
 });

@@ -50,22 +50,31 @@ async function deleteUser(req, res) {
 
 async function login(req, res) {
   const { username, password } = req.body;
-  const user = await User.findOne({ username, password });
+  try {
+    const user = await User.findOne({ username, password });
 
-  if (user) {
-    const token = jwt.sign(
-      { username: user.username, id: user._id, role: user.role },
-      secretKey,
-      {
-        expiresIn: "1h",
-      }
-    );
-    res.json({
-      token,
-      user: { username: user.username, id: user._id, role: user.role },
-    });
-  } else {
-    res.status(401).json({ message: "Invalid credentials" });
+    if (user) {
+      const token = jwt.sign(
+        { username: user.username, id: user._id, role: user.role },
+        secretKey,
+        {
+          expiresIn: "1h",
+        }
+      );
+      const redirect =
+        user.role === "admin" ? "/managedishes" : "/itemselection/restaurants";
+      res.json({
+        success: true,
+        token,
+        user: { username: user.username, id: user._id, role: user.role },
+        redirect: redirect,
+      });
+    } else {
+      res.status(401).json({ success: false, message: "Invalid credentials" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 }
 async function adminDasboard(req, res) {

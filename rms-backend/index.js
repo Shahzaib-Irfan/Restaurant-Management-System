@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path");
 require("./utils/db");
 const app = express();
 const {
@@ -7,6 +8,7 @@ const {
   requireRoles,
 } = require("./utils/authorizationMiddleware");
 
+app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 const cors = require("cors");

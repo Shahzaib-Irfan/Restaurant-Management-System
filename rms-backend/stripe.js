@@ -24,10 +24,11 @@ router.post("/pay", async (req, res) => {
     }
     let SessionId = "";
     async function checkout(dish, totalAmount) {
-      const unitAmount = 100 * Number(totalAmount);
+      const unitAmount = 100 * Number(dish[0].dish.price);
+
       let orderName = "";
       if (dish.length == 1) {
-        orderName = dish[0].name;
+        orderName = dish[0].dish.name;
       } else {
         orderName = `${dish[0].dish.name} and Others`;
       }
@@ -39,11 +40,13 @@ router.post("/pay", async (req, res) => {
               currency: "pkr",
               product_data: {
                 name: String(orderName),
-                images: [`http://localhost:3005/images/${dish[0].dish.image}`],
+                images: [
+                  `http://localhost:3005/images/pexels-ella-olsson-1640769.jpg`,
+                ],
               },
               unit_amount: unitAmount,
             },
-            quantity: 1,
+            quantity: dish[0].amount,
           },
         ],
         mode: "payment",

@@ -48,7 +48,7 @@ const LoginPage = () => {
       <Logo src="logo_url" alt="logo" />
       <Input type="text" placeholder="Email address" />
       <Input type="password" placeholder="Password" />
-      <Button>Login</Button>
+      <Button className="btn2">Login</Button>
     </Container>
   );
 };

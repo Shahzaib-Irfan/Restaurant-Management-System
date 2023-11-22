@@ -60,6 +60,9 @@ const Table = ({ _id, tableNo, restaurantID, capacity, reservationStatus }) => {
               )}
             </div>
             <div>
+              <Link to={`/managetables/viewtable/${_id}`} className="btn">
+                Details
+              </Link>
               {setMode === "Update" ? (
                 <Link to={`/managetables/updatetable/${_id}`} className="btn">
                   Update

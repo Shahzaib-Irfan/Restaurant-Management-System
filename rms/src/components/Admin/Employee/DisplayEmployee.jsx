@@ -25,8 +25,6 @@ const Employee = ({
           },
         }
       );
-
-      // Handle the response as needed
     } catch (error) {
       console.error("Error updating dish:", error);
     }
@@ -54,6 +52,9 @@ const Employee = ({
             <p style={{ color: "grey" }}>{position}</p>
           </div>
           <div>
+            <Link to={`/manageemployees/viewemployee/${_id}`} className="btn">
+              Details
+            </Link>
             {setMode === "Update" ? (
               <Link
                 to={`/manageemployees/updateemployee/${_id}`}

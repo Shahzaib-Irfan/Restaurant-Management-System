@@ -26,6 +26,8 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import SingleRestaurant from "./components/Admin/Restaurants/SingleRestaurant";
 import "./App.css";
+import SingleTable from "./components/Admin/Tables/SingleTable";
+import SingleEmployee from "./components/Admin/Employee/SingleEmployee";
 
 function App() {
   return (
@@ -56,12 +58,17 @@ function App() {
             element={<UpdateRestaurant />}
           />
           <Route path="/managetables" element={<ManageTables />} />
+          <Route path="/managetables/viewtable/:id" element={<SingleTable />} />
           <Route path="/managetables/addtable" element={<AddTable />} />
           <Route
             path="/managetables/updatetable/:id"
             element={<UpdateTable />}
           />
           <Route path="/manageemployees" element={<ManageEmployees />} />
+          <Route
+            path="/manageemployees/viewemployee/:id"
+            element={<SingleEmployee />}
+          />
           <Route
             path="/manageemployees/addemployee"
             element={<AddEmployee />}

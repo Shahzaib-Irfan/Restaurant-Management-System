@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useReducer } from "react";
 import reducer from "../reducers/user_reducer";
+import { useNavigate } from "react-router-dom";
 import {
   GET_USER_BEGIN,
   GET_USER_SUCCESS,
@@ -14,6 +15,7 @@ const initialState = {
   users: [],
   token: "",
   message: "",
+  redirect: "",
   isLoading: false,
   isError: false,
   currentUser: {},
@@ -25,15 +27,18 @@ const UserContext = React.createContext();
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const loginWithAuthentication = async (username, password) => {
-    console.log(username, password);
     dispatch({ type: GET_SINGLE_USER_BEGIN });
     try {
       const response = await axios.post("http://localhost:3005/userApi/login", {
         username,
         password,
       });
-      const { token, user } = response.data;
-      dispatch({ type: GET_SINGLE_USER_SUCCESS, payload: { token, user } });
+      const { token, user, redirect } = response.data;
+      dispatch({
+        type: GET_SINGLE_USER_SUCCESS,
+        payload: { token, user, redirect },
+      });
+      //window.location.href = redirect;
     } catch (error) {
       dispatch({
         type: GET_SINGLE_USER_ERROR,

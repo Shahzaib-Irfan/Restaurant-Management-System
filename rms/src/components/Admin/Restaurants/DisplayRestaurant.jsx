@@ -45,6 +45,12 @@ const Restaurant = ({ _id, name, address, contact, image }) => {
             <p style={{ color: "grey" }}>{contact}</p>
           </div>
           <div>
+            <Link
+              to={`/managerestaurants/viewrestaurant/${_id}`}
+              className="btn"
+            >
+              Details
+            </Link>
             {setMode === "Update" ? (
               <Link
                 to={`/managerestaurants/updaterestaurant/${_id}`}

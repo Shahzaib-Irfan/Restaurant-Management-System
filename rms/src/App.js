@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+import { useEffect } from "react";
 import "./App.css";
 import LandingPage from "./pages/LandingPage";
 import Navbar from "./utils/Navbar";
@@ -24,7 +24,7 @@ import SingleDish from "./components/Admin/Dishes/SingleDish";
 import CartPage from "./pages/CartPage";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-
+import SingleRestaurant from "./components/Admin/Restaurants/SingleRestaurant";
 import "./App.css";
 
 function App() {
@@ -43,6 +43,10 @@ function App() {
           <Route path="/managedishes/viewdish/:id" element={<SingleDish />} />
           <Route path="/managedishes/updatedish/:id" element={<UpdateDish />} />
           <Route path="/managerestaurants" element={<ManageRestaurants />} />
+          <Route
+            path="/managerestaurants/viewrestaurant/:id"
+            element={<SingleRestaurant />}
+          />
           <Route
             path="/managerestaurants/addrestaurant"
             element={<AddRestaurant />}

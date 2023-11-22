@@ -33,7 +33,7 @@ export const CartProvider = ({ children }) => {
       payload: { id, restaurant, date, amount, dish },
     });
   };
-  const clearCart = () => {
+  const clearCart = async () => {
     dispatch({ type: CLEAR_CART });
   };
   const toggleAmount = (id, type) => {

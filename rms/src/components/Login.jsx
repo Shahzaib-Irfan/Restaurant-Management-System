@@ -1,5 +1,7 @@
-import React from "react";
+import { React, useEffect } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../contexts/UserContext";
 
 const Container = styled.div`
   display: flex;
@@ -33,6 +35,14 @@ const Input = styled.input`
 `;
 
 const LoginPage = () => {
+  const { token, redirect } = useUserContext();
+  const navigate = useNavigate();
+  if (token !== "") {
+    navigate(redirect);
+  }
+  // useEffect(() => {
+  //   navigate(redirect);
+  // }, [token, redirect]);
   return (
     <Container>
       <Logo src="logo_url" alt="logo" />

@@ -2,16 +2,15 @@ import React from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { useCartContext } from "../../../contexts/CartContext";
-import { Link } from "react-router-dom";
+import { Link, resolvePath } from "react-router-dom";
 import { useUserContext } from "../../../contexts/UserContext";
 
 const CartTotals = () => {
-  const { amountPayable, shippingFee, cart } = useCartContext();
+  const { amountPayable, shippingFee, cart, clearCart } = useCartContext();
   const { currentUser, loginWithAuthentication, token } = useUserContext();
   const pay = async () => {
     try {
       const updateCart = { cart: cart, user: currentUser.id };
-      console.log(cart);
       const response = await axios.post(
         "http://localhost:3005/paymentApi/pay",
         {
@@ -27,8 +26,7 @@ const CartTotals = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data = await response.json();
-      console.log(data);
+      const data = await response.data;
     } catch (error) {
       console.error("An error occurred while posting the data.", error);
     }
@@ -49,7 +47,7 @@ const CartTotals = () => {
           </h4>
         </article>
         {token !== "" ? (
-          <button onClick={() => pay()} className="btn2">
+          <button onClick={() => (pay(), clearCart())} className="btn2">
             checkout
           </button>
         ) : (

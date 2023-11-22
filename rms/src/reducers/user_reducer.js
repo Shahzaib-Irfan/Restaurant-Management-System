@@ -29,6 +29,7 @@ const user_reducer = (state, action) => {
       ...state,
       currentUser: action.payload["user"],
       token: action.payload["token"],
+      redirect: action.payload["redirect"],
       message: "",
       currentUserLoading: false,
     };

@@ -17,24 +17,6 @@ const MainPage = () => {
   return (
     <Rooms>
       <div className="container">
-        <div className="left">
-          <div className="left-container">
-            <div
-              className="left-container-item"
-              onClick={() => handleSetModeUpdate("Update")}
-            >
-              <img src={edit} alt="Edit" />
-              <h3>Update</h3>
-            </div>
-            <div
-              className="left-container-item"
-              onClick={() => handleSetModeUpdate("Delete")}
-            >
-              <img src={deleteImage} alt="Delete" />
-              <h3>Delete</h3>
-            </div>
-          </div>
-        </div>
         <div className="right">
           <div className="right-top" style={{ marginTop: "10px" }}>
             <center>
@@ -92,7 +74,7 @@ const Rooms = styled.div`
     overflow: hidden;
   }
   .right {
-    width: 80%;
+    width: 100%;
   }
 
   .left-container {

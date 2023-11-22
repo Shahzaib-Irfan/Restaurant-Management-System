@@ -78,7 +78,7 @@ const Rooms = styled.div`
     overflow: hidden;
   }
   .right {
-    width: 80%;
+    width: 100%;
   }
 
   .left-container {

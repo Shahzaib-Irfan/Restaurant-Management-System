@@ -15,8 +15,6 @@ const Restaurant = ({ _id, name, address, contact, image }) => {
           />
           <div className="room-box-footer">
             <p style={{ color: "green" }}>{name}</p>
-          </div>
-          <div>
             <p style={{ color: "blue" }}>{address}</p>
           </div>
           <Link to={`/itemselection/restaurants/${_id}`} className="btn">
@@ -30,7 +28,7 @@ const Restaurant = ({ _id, name, address, contact, image }) => {
 
 const RoomWrapper = styled.div`
   .room-box {
-    width: 100%;
+    width: 33vw;
     margin: 6px;
     padding: 10px;
     border: 1px solid black;
@@ -53,6 +51,7 @@ const RoomWrapper = styled.div`
   .room-box-footer {
     display: flex;
     flex-direction: row;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
     padding: 10px;
@@ -62,9 +61,14 @@ const RoomWrapper = styled.div`
     font-size: 1rem;
     padding: 0.25rem 0.5rem;
   }
+  @media (max-width: 1192px) {
+    .room-box {
+      width: 30vw;
+    }
+  }
   @media (max-width: 768px) {
     .room-box {
-      width: 100%;
+      width: 75vw;
     }
   }
 `;

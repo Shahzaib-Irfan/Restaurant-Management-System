@@ -84,7 +84,7 @@ const Table = ({ _id, tableNo, restaurantID, capacity, reservationStatus }) => {
 
 const RoomWrapper = styled.div`
   .room-box {
-    width: 100%;
+    width: 25vw;
     margin: 6px;
     padding: 10px;
     border: 1px solid black;
@@ -116,9 +116,14 @@ const RoomWrapper = styled.div`
     font-size: 1rem;
     padding: 0.25rem 0.5rem;
   }
+  @media (max-width: 992px) {
+    .room-box {
+      width: 30vw;
+    }
+  }
   @media (max-width: 768px) {
     .room-box {
-      width: 100%;
+      width: 75vw;
     }
   }
 `;

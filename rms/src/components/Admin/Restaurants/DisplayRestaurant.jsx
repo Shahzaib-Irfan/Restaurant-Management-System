@@ -37,11 +37,7 @@ const Restaurant = ({ _id, name, address, contact, image }) => {
           />
           <div className="room-box-footer">
             <p style={{ color: "green" }}>{name}</p>
-          </div>
-          <div>
             <p style={{ color: "blue" }}>{address}</p>
-          </div>
-          <div>
             <p style={{ color: "grey" }}>{contact}</p>
           </div>
           <div>
@@ -88,8 +84,8 @@ const RoomWrapper = styled.div`
   }
 
   .room-box img {
-    height: 70%;
-    width: 100%;
+    height: 55%;
+    width: 260;
     object-fit: cover;
     border-radius: 5px 5px 0 0;
   }
@@ -98,6 +94,8 @@ const RoomWrapper = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
+    width: 100%;
+    gap: 2;
     justify-content: space-between;
     padding: 10px;
     gap: 2;

@@ -77,8 +77,8 @@ const RoomWrapper = styled.div`
   }
 
   .room-box img {
-    height: 70%;
-    width: 100%;
+    height: 50%;
+    width: 260px;
     object-fit: cover;
     border-radius: 5px 5px 0 0;
   }
@@ -97,7 +97,7 @@ const RoomWrapper = styled.div`
   }
   @media (max-width: 768px) {
     .room-box {
-      width: 100%;
+      width: 120%;
     }
   }
 `;

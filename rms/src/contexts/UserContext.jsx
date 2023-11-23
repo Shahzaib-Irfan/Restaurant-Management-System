@@ -9,18 +9,30 @@ import {
   GET_SINGLE_USER_BEGIN,
   GET_SINGLE_USER_SUCCESS,
   GET_SINGLE_USER_ERROR,
+  GET_SINGLE_USER_ORDERS_BEGIN,
+  GET_SINGLE_USER_ORDERS_SUCCESS,
+  GET_SINGLE_USER_ORDERS_ERROR,
+  GET_USER_ORDERS_BEGIN,
+  GET_USER_ORDERS_SUCCESS,
+  GET_USER_ORDERS_ERROR,
 } from "../actions";
 
 const initialState = {
   users: [],
+  orders: [],
   token: "",
   message: "",
   redirect: "",
   isLoading: false,
   isError: false,
+  isOrdersLoading: false,
+  userOrdersError: false,
   currentUser: {},
+  singleUserOrders: [],
   currentUserError: false,
   currentUserLoading: false,
+  singleUserOrdersError: false,
+  singleUserOrdersLoading: false,
 };
 
 const UserContext = React.createContext();
@@ -51,8 +63,41 @@ export const UserProvider = ({ children }) => {
       payload: { user: {}, token: "" },
     });
   };
+
+  const fetchSingleUserOrders = async (url) => {
+    dispatch({ type: GET_SINGLE_USER_ORDERS_BEGIN });
+    try {
+      const response = await axios.get(url);
+      const data = await response.data;
+      dispatch({ type: GET_SINGLE_USER_ORDERS_SUCCESS, payload: data });
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: GET_SINGLE_USER_ORDERS_ERROR });
+    }
+  };
+
+  const fetchUserOrders = async () => {
+    dispatch({ type: GET_USER_ORDERS_BEGIN });
+    try {
+      const response = await axios.get(
+        "http://localhost:3005/orderApi/orders/getOrders"
+      );
+      const data = await response.data;
+      dispatch({ type: GET_USER_ORDERS_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({ type: GET_USER_ORDERS_ERROR });
+    }
+  };
   return (
-    <UserContext.Provider value={{ ...state, loginWithAuthentication, logout }}>
+    <UserContext.Provider
+      value={{
+        ...state,
+        loginWithAuthentication,
+        logout,
+        fetchSingleUserOrders,
+        fetchUserOrders,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

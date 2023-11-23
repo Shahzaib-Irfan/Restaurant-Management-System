@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import Loading from "../../../constants/Loading";
-import DisplayUserBooking from "./DisplayUserBooking";
+import DisplayUserOrder from "./DisplayUserOrder";
 import { useUserContext } from "../../../contexts/UserContext";
 
 const UserBookings = () => {
@@ -11,12 +11,13 @@ const UserBookings = () => {
     singleUserOrdersError,
     fetchSingleUserOrders,
     currentUser,
+    token,
   } = useUserContext();
 
   useEffect(() => {
     if (token !== "") {
       fetchSingleUserOrders(
-        `http://localhost:3005/orderApi/orders/getSingleUserOrders/${currentUser._id}`
+        `http://localhost:3005/orderApi/orders/getSingleUserOrders/${currentUser.id}`
       );
     }
   }, []);
@@ -44,7 +45,7 @@ const UserBookings = () => {
             <div className="room-container">
               {singleUserOrders.map((order, index) => {
                 return (
-                  <DisplayUserBooking
+                  <DisplayUserOrder
                     {...order}
                     count={singleUserOrders.length}
                   />

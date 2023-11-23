@@ -15,6 +15,9 @@ import {
   GET_USER_ORDERS_BEGIN,
   GET_USER_ORDERS_SUCCESS,
   GET_USER_ORDERS_ERROR,
+  GET_SINGLE_ORDER_BEGIN,
+  GET_SINGLE_ORDER_SUCCESS,
+  GET_SINGLE_ORDER_ERROR,
 } from "../actions";
 
 const initialState = {
@@ -29,6 +32,9 @@ const initialState = {
   userOrdersError: false,
   currentUser: {},
   singleUserOrders: [],
+  singleOrder: {},
+  singleOrderLoading: false,
+  singleOrderError: false,
   currentUserError: false,
   currentUserLoading: false,
   singleUserOrdersError: false,
@@ -88,6 +94,17 @@ export const UserProvider = ({ children }) => {
       dispatch({ type: GET_USER_ORDERS_ERROR });
     }
   };
+
+  const fetchSingleOrder = async (url) => {
+    dispatch({ type: GET_SINGLE_ORDER_BEGIN });
+    try {
+      const response = await axios.get(url);
+      const data = await response.data;
+      dispatch({ type: GET_SINGLE_ORDER_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({ type: GET_SINGLE_ORDER_ERROR });
+    }
+  };
   return (
     <UserContext.Provider
       value={{
@@ -96,6 +113,7 @@ export const UserProvider = ({ children }) => {
         logout,
         fetchSingleUserOrders,
         fetchUserOrders,
+        fetchSingleOrder,
       }}
     >
       {children}

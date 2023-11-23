@@ -14,7 +14,7 @@ const CartItem = ({ id, image, restaurant, amount, dish }) => {
   return (
     <Wrapper>
       <div className="title">
-        <img src={image} alt={dish.name} />
+        <img src={`http://localhost:3005/images/${image}`} alt={dish.name} />
         <div>
           <h5 className="name">{dish.name}</h5>
           <p className="name">

@@ -11,6 +11,9 @@ import {
   GET_USER_ORDERS_BEGIN,
   GET_USER_ORDERS_SUCCESS,
   GET_USER_ORDERS_ERROR,
+  GET_SINGLE_ORDER_BEGIN,
+  GET_SINGLE_ORDER_SUCCESS,
+  GET_SINGLE_ORDER_ERROR,
 } from "../actions";
 
 const user_reducer = (state, action) => {
@@ -77,6 +80,19 @@ const user_reducer = (state, action) => {
       singleUserOrdersError: true,
       singleUserOrdersLoading: false,
     };
+  }
+  if (action.type === GET_SINGLE_ORDER_BEGIN) {
+    return { ...state, singleOrderLoading: true };
+  }
+  if (action.type === GET_SINGLE_ORDER_SUCCESS) {
+    return {
+      ...state,
+      singleOrderLoading: false,
+      singleOrder: action.payload,
+    };
+  }
+  if (action.type === GET_SINGLE_ORDER_ERROR) {
+    return { ...state, singleOrderError: true, singleOrderLoading: false };
   }
   throw new Error(`No Matching "${action.type}" - action type`);
 };

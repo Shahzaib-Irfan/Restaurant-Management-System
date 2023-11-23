@@ -28,6 +28,8 @@ import SingleRestaurant from "./components/Admin/Restaurants/SingleRestaurant";
 import "./App.css";
 import SingleTable from "./components/Admin/Tables/SingleTable";
 import SingleEmployee from "./components/Admin/Employee/SingleEmployee";
+import UserOrders from "./components/User/Bookings/UserOrders";
+import SingleUserOrder from "./components/User/Bookings/SingleUserOrder";
 
 function App() {
   return (
@@ -79,6 +81,11 @@ function App() {
           />
           <Route path="/itemselection/restaurants" element={<MainPage />} />
           <Route path="/itemselection/restaurants/:id" element={<Dishes />} />
+          <Route path="/userorders" element={<UserOrders />} />
+          <Route
+            path="/userorders/vieworder/:id"
+            element={<SingleUserOrder />}
+          />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>

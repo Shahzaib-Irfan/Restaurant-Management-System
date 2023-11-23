@@ -45,8 +45,8 @@ const AdminNavbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" to="managetables">
-                Tables
+              <Link className="nav-link active" to="userorders">
+                Your Orders
               </Link>
             </li>
             <li className="nav-item">

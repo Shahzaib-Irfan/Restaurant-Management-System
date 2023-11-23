@@ -44,6 +44,16 @@ async function getOrder(req, res) {
   }
 }
 
+async function getUserOrders(req, res) {
+  try {
+    const orders = await Order.find({ userID: req.params["id"] });
+    res.send(orders);
+  } catch (err) {
+    console.log(err);
+    res.send(500).json({ error: err.message });
+  }
+}
+
 async function updateOrder(req, res) {
   try {
     const order = await Order.updateOne(
@@ -76,6 +86,7 @@ module.exports = {
   createOrder,
   getOrders,
   getOrder,
+  getUserOrders,
   updateOrder,
   deleteOrder,
 };

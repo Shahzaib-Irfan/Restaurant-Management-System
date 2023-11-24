@@ -1,9 +1,20 @@
 const Employee = require("../models/employee");
+const User = require("../models/user");
 
 async function createEmployee(req, res) {
   try {
+    const userData = {
+      username: req.body["username"],
+      password: req.body["password"],
+      firstName: req.body["firstName"],
+      lastName: req.body["lastName"],
+      email: req.body["email"],
+      dob: req.body["dob"],
+      role: req.body["role"],
+    };
+    const user = await User.create(userData);
     const employee = await Employee.create(req.body);
-    res.status(201).json(employee);
+    res.status(201).redirect("http://localhost:3005//manageemployees");
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -32,6 +43,19 @@ async function getEmployee(req, res) {
 
 async function updateEmployee(req, res) {
   try {
+    const userData = {
+      username: req.body["username"],
+      password: req.body["password"],
+      firstName: req.body["firstName"],
+      lastName: req.body["lastName"],
+      email: req.body["email"],
+      dob: req.body["dob"],
+      role: req.body["role"],
+    };
+    const user = await User.updateOne(
+      { username: userData.username, password: userData.password },
+      userData
+    );
     const employee = await Employee.updateOne(
       { _id: req.params["id"] },
       req.body

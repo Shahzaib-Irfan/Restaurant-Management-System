@@ -13,7 +13,7 @@ async function createUser(req, res) {
       user = await User.create({ ...req.body, role: "user" });
     }
 
-    res.status(201).redirect("http://localhost:3000/itemselection/restaurants");
+    res.status(201).redirect("http://localhost:3000/login");
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

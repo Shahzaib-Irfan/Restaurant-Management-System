@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useDishesContext } from "../../../contexts/DishContext";
 import { useRestaurantsContext } from "../../../contexts/RestaurantContext";
+import { useUserContext } from "../../../contexts/UserContext";
 
 const DisplayUserOrder = ({
   _id,
@@ -19,6 +20,23 @@ const DisplayUserOrder = ({
     useDishesContext();
   const { singleRestaurant, fetchSingleRestaurant, singleRestaurantError } =
     useRestaurantsContext();
+  const { currentUser } = useUserContext();
+
+  const [dishData, setDishData] = useState({
+    name: "",
+    price: 0,
+    image: "",
+  });
+
+  useEffect(() => {
+    if (singleDish._id === dishID) {
+      setDishData({
+        name: singleDish.name,
+        price: singleDish.price,
+        image: singleDish.image,
+      });
+    }
+  }, [singleDish]);
 
   const Pay = async (roomId) => {
     try {
@@ -49,16 +67,18 @@ const DisplayUserOrder = ({
           <div className="room-box">
             <div className="image-wrapper">
               <img
-                src={`http://localhost:3005/images/${singleDish.image}`}
-                alt={singleDish.name}
+                src={`http://localhost:3005/images/${dishData.image}`}
+                alt={dishData.name}
               />
             </div>
             <div className="info-wrapper">
-              <div className="room-name">{singleDish.name}</div>
+              <div className="room-name">{dishData.name}</div>
               <div className="room-dates">
                 <div className="arrival">
                   <span className="label">Order Date:</span>
-                  <span className="value">{orderDate.slice(0, 10)}</span>
+                  <span className="value">
+                    {orderDate.toString().slice(0, 10)}
+                  </span>
                 </div>
                 <div className="departure">
                   <span className="label">Total: </span>
@@ -79,9 +99,21 @@ const DisplayUserOrder = ({
               </div>
             </div>
             <div className="interactions">
-              <Link className="details-btn" to={`/userorders/${_id}`}>
-                Details
-              </Link>
+              {currentUser && currentUser.role === "user" ? (
+                <Link
+                  className="details-btn"
+                  to={`/orders/vieworder/${dishData.orderID}}`}
+                >
+                  Details
+                </Link>
+              ) : (
+                <Link
+                  className="details-btn"
+                  to={`/userorders/vieworder/${dishData.orderID}`}
+                >
+                  Details
+                </Link>
+              )}
             </div>
           </div>
         </SingleRoomWrapper>
@@ -94,16 +126,18 @@ const DisplayUserOrder = ({
           <div className="room-box">
             <div className="image-wrapper">
               <img
-                src={`http://localhost:3005/images/${singleDish.image}`}
-                alt={singleDish.name}
+                src={`http://localhost:3005/images/${dishData.image}`}
+                alt={dishData.name}
               />
             </div>
             <div className="info-wrapper">
-              <div className="room-name">{singleDish.name}</div>
+              <div className="room-name">{dishData.name}</div>
               <div className="room-dates">
                 <div className="arrival">
                   <span className="label">Order Date:</span>
-                  <span className="value">{orderDate.slice(0, 10)}</span>
+                  <span className="value">
+                    {orderDate.toString().slice(0, 10)}
+                  </span>
                 </div>
                 <div className="departure">
                   <span className="label">Total: </span>
@@ -124,9 +158,18 @@ const DisplayUserOrder = ({
               </div>
             </div>
             <div className="interactions">
-              <Link className="details-btn" to={`/userorders/vieworder/${_id}`}>
-                Details
-              </Link>
+              {currentUser && currentUser.role === "user" ? (
+                <Link className="details-btn" to={`/orders/vieworder/${_id}`}>
+                  Details
+                </Link>
+              ) : (
+                <Link
+                  className="details-btn"
+                  to={`/userorders/vieworder/${_id}`}
+                >
+                  Details
+                </Link>
+              )}
             </div>
           </div>
         </RoomWrapper>
@@ -135,7 +178,7 @@ const DisplayUserOrder = ({
 };
 
 const RoomWrapper = styled.div`
-  width: 25%;
+  width: 25vw;
   margin: 6px;
   padding: 10px;
   border: 1px solid #e0e0e0;

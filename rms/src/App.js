@@ -30,6 +30,7 @@ import SingleTable from "./components/Admin/Tables/SingleTable";
 import SingleEmployee from "./components/Admin/Employee/SingleEmployee";
 import UserOrders from "./components/User/Bookings/UserOrders";
 import SingleUserOrder from "./components/User/Bookings/SingleUserOrder";
+import AllOrders from "./components/Admin/Orders/AllOrders";
 
 function App() {
   return (
@@ -46,6 +47,11 @@ function App() {
           <Route path="/managedishes/adddish" element={<AddDish />} />
           <Route path="/managedishes/viewdish/:id" element={<SingleDish />} />
           <Route path="/managedishes/updatedish/:id" element={<UpdateDish />} />
+          <Route path="/userorders" element={<AllOrders />} />
+          <Route
+            path="/userorders/vieworder/:id"
+            element={<SingleUserOrder />}
+          />
           <Route path="/managerestaurants" element={<ManageRestaurants />} />
           <Route
             path="/managerestaurants/viewrestaurant/:id"
@@ -81,11 +87,12 @@ function App() {
           />
           <Route path="/itemselection/restaurants" element={<MainPage />} />
           <Route path="/itemselection/restaurants/:id" element={<Dishes />} />
-          <Route path="/userorders" element={<UserOrders />} />
-          <Route
-            path="/userorders/vieworder/:id"
-            element={<SingleUserOrder />}
-          />
+          {/* <Route
+            path="/itemselection/restaurants/:id/:dishID"
+            element={<SingleDish />}
+          /> */}
+          <Route path="/orders" element={<UserOrders />} />
+          <Route path="/orders/vieworder/:id" element={<SingleUserOrder />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>

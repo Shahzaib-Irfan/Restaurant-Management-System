@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 class SignUp extends React.Component {
   render() {
@@ -77,12 +78,8 @@ const FormInput = (props) => (
 
 const OtherMethods = (props) => (
   <div id="alternativeLogin">
-    <label>Or sign up with:</label>
-    <div id="iconGroup">
-      <Facebook />
-      <Twitter />
-      <Google />
-    </div>
+    <label>Already Have an Account?</label>
+    <Link to="/login">Login</Link>
   </div>
 );
 

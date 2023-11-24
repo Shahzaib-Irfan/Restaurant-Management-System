@@ -16,11 +16,16 @@ const UpdateEmployee = () => {
     singleEmployeeLoading,
   } = useEmployeesContext();
   const [formData, setFormData] = useState({
+    username: "",
+    password: "",
     firstName: "",
     lastName: "",
+    email: "",
     contact: "",
+    dob: null,
     hireDate: null,
     position: "",
+    role: "",
   });
 
   useEffect(() => {
@@ -33,11 +38,16 @@ const UpdateEmployee = () => {
     if (singleEmployee) {
       singleEmployee.hireDate &&
         setFormData({
+          username: singleEmployee["username"],
+          password: singleEmployee["password"],
           firstName: singleEmployee["firstName"],
           lastName: singleEmployee["lastName"],
           contact: singleEmployee["contact"],
+          email: singleEmployee["email"],
+          dob: singleEmployee["dob"].slice(0, 10),
           hireDate: singleEmployee["hireDate"].slice(0, 10),
           position: singleEmployee["position"],
+          role: singleEmployee["role"],
         });
     }
   }, [fetchSingleEmployee]);
@@ -93,6 +103,30 @@ const UpdateEmployee = () => {
               <div class="form-floating mb-3">
                 <input
                   type="text"
+                  name="username"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="Username"
+                  value={formData.username}
+                  onChange={handleInputChange}
+                />
+                <label for="floatingInput">Username</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="password"
+                  name="password"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="Password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                />
+                <label for="floatingInput">Password</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
                   name="firstName"
                   class="form-control"
                   id="floatingInput"
@@ -100,7 +134,7 @@ const UpdateEmployee = () => {
                   value={formData.firstName}
                   onChange={handleInputChange}
                 />
-                <label for="floatingInput">{formData.firstName}</label>
+                <label for="floatingInput">First Name</label>
               </div>
               <div class="form-floating mb-3">
                 <input
@@ -112,7 +146,20 @@ const UpdateEmployee = () => {
                   value={formData.lastName}
                   onChange={handleInputChange}
                 />
-                <label for="floatingInput">{formData.lastName}</label>
+                <label for="floatingInput">Last Name</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  id="floatingInput"
+                  placeholder="Email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                />
+                <label for="floatingInput">Email</label>
               </div>
 
               <div class="form-floating mb-3">
@@ -125,37 +172,33 @@ const UpdateEmployee = () => {
                   value={formData.contact}
                   onChange={handleInputChange}
                 />
-                <label for="InputIngredients">{formData.contact}</label>
+                <label for="InputIngredients">Contact</label>
               </div>
-              {formData.hireDate ? (
-                <div class="form-floating mb-3">
-                  <input
-                    type="date"
-                    name="hireDate"
-                    class="form-control"
-                    id="InputIngredients"
-                    placeholder="Hire Date"
-                    value={formData.hireDate}
-                    onChange={handleInputChange}
-                  />
-                  <label for="InputIngredients">
-                    {formData.hireDate.slice(0, 10)}
-                  </label>
-                </div>
-              ) : (
-                <div class="form-floating mb-3">
-                  <input
-                    type="date"
-                    name="hireDate"
-                    class="form-control"
-                    id="InputIngredients"
-                    placeholder="Hire Date"
-                    value={formData.hireDate}
-                    onChange={handleInputChange}
-                  />
-                  <label for="InputIngredients">{formData.hireDate}</label>
-                </div>
-              )}
+
+              <div class="form-floating mb-3">
+                <input
+                  type="date"
+                  name="dob"
+                  class="form-control"
+                  id="InputIngredients"
+                  placeholder="Date of Birth"
+                  value={formData.dob}
+                  onChange={handleInputChange}
+                />
+                <label for="InputIngredients">DOB</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="date"
+                  name="hireDate"
+                  class="form-control"
+                  id="InputIngredients"
+                  placeholder="Hire Date"
+                  value={formData.hireDate}
+                  onChange={handleInputChange}
+                />
+                <label for="InputIngredients">Hire Date</label>
+              </div>
 
               <div class="form-floating mb-3">
                 <input
@@ -167,7 +210,19 @@ const UpdateEmployee = () => {
                   value={formData.position}
                   onChange={handleInputChange}
                 />
-                <label for="InputIngredients">{formData.position}</label>
+                <label for="InputIngredients">Position</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input
+                  type="text"
+                  name="role"
+                  class="form-control"
+                  id="InputIngredients"
+                  placeholder="Role"
+                  value={formData.role}
+                  onChange={handleInputChange}
+                />
+                <label for="InputIngredients">Role</label>
               </div>
               <button className="cool-button" type="submit">
                 Update Employee

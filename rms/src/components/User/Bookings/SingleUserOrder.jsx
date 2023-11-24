@@ -14,6 +14,7 @@ const SingleUserOrder = () => {
     singleOrder,
     fetchSingleOrder,
     singleOrderError,
+    currentUser,
   } = useUserContext();
   const { singleDish, loading, fetchSingleDish, singleDishError } =
     useDishesContext();
@@ -47,9 +48,15 @@ const SingleUserOrder = () => {
     return (
       <Wrapper>
         <section className="section room-section">
-          <Link to="/userorders" className="btn btn-primary">
-            Back
-          </Link>
+          {currentUser && currentUser.role === "user" ? (
+            <Link to="/orders" className="btn btn-primary">
+              Back
+            </Link>
+          ) : (
+            <Link to="/userorders" className="btn btn-primary">
+              Back
+            </Link>
+          )}
           <h2 className="section-title">{name}</h2>
           <div className="room">
             <img
@@ -67,7 +74,7 @@ const SingleUserOrder = () => {
               </p>
               <p>
                 <span className="room-data">order date :</span>
-                {orderDate.slice(0, 10)}
+                {orderDate}
               </p>
               <p>
                 <span className="room-data">Status :</span>

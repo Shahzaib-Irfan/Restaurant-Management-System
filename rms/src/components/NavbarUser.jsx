@@ -45,7 +45,7 @@ const AdminNavbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link active" to="userorders">
+              <Link className="nav-link active" to="orders">
                 Your Orders
               </Link>
             </li>

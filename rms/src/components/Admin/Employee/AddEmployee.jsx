@@ -5,11 +5,16 @@ import styled from "styled-components";
 
 const AddEmployee = () => {
   const [formData, setFormData] = useState({
+    username: "",
+    password: "",
     firstName: "",
     lastName: "",
+    email: "",
     contact: "",
+    dob: null,
     hireDate: null,
     position: "",
+    role: "",
   });
 
   const handleInputChange = (e) => {
@@ -57,6 +62,28 @@ const AddEmployee = () => {
             <div class="form-floating mb-3">
               <input
                 type="text"
+                name="username"
+                class="form-control"
+                id="floatingInput"
+                placeholder="Username"
+                onChange={handleInputChange}
+              />
+              <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="password"
+                name="password"
+                class="form-control"
+                id="floatingInput"
+                placeholder="Password"
+                onChange={handleInputChange}
+              />
+              <label for="floatingInput">Password</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
                 name="firstName"
                 class="form-control"
                 id="floatingInput"
@@ -79,6 +106,18 @@ const AddEmployee = () => {
 
             <div class="form-floating mb-3">
               <input
+                type="email"
+                name="email"
+                class="form-control"
+                id="floatingInput"
+                placeholder="Email"
+                onChange={handleInputChange}
+              />
+              <label for="floatingInput">Email</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input
                 type="text"
                 name="contact"
                 class="form-control"
@@ -89,6 +128,17 @@ const AddEmployee = () => {
               <label for="InputIngredients">Contact Information</label>
             </div>
 
+            <div class="form-floating mb-3">
+              <input
+                type="date"
+                name="dob"
+                class="form-control"
+                id="InputIngredients"
+                placeholder="Date of Birth"
+                onChange={handleInputChange}
+              />
+              <label for="InputIngredients">Date of Birth</label>
+            </div>
             <div class="form-floating mb-3">
               <input
                 type="date"
@@ -111,6 +161,17 @@ const AddEmployee = () => {
                 onChange={handleInputChange}
               />
               <label for="InputIngredients">Position</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                name="role"
+                class="form-control"
+                id="InputIngredients"
+                placeholder="Role"
+                onChange={handleInputChange}
+              />
+              <label for="InputIngredients">Role</label>
             </div>
             <button className="cool-button" type="submit">
               Add Employee

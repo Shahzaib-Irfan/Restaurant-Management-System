@@ -68,6 +68,7 @@ export const UserProvider = ({ children }) => {
       type: GET_SINGLE_USER_SUCCESS,
       payload: { user: {}, token: "" },
     });
+    window.location.href = "/login";
   };
 
   const fetchSingleUserOrders = async (url) => {

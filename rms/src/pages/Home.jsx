@@ -22,7 +22,7 @@ const Home = () => {
 
 const Hero = styled.div`
   position: relative;
-  background-image: url("../assets/pexels-erica-zhao-26702738000.jpg");
+  background-image: url("./assets/pexels-erica-zhao-26702738000.jpg");
   background-size: cover;
   height: 100vh; /* Set the height to cover the viewport */
   background-repeat: no-repeat;

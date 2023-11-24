@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useUserContext } from "../contexts/UserContext";
+import { Link } from "react-router-dom";
 
 class Login extends React.Component {
   render() {
@@ -84,12 +85,8 @@ const FormInput = (props) => (
 
 const OtherMethods = (props) => (
   <div id="alternativeLogin">
-    <label>Or sign in with:</label>
-    <div id="iconGroup">
-      <Facebook />
-      <Twitter />
-      <Google />
-    </div>
+    <label>Dont have an account?</label>
+    <Link to="/signup">Sign Up</Link>
   </div>
 );
 

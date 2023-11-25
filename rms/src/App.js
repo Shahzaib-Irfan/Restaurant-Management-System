@@ -33,6 +33,7 @@ import SingleUserOrder from "./components/User/Bookings/SingleUserOrder";
 import AllOrders from "./components/Admin/Orders/AllOrders";
 import AdminPrivateRoute from "./pages/AdminPrivateRoute";
 import UserPrivateRoute from "./pages/UserPrivateRoute";
+import MakeYourOwn from "./components/User/Dishes/MakeYourOwn";
 
 function App() {
   return (
@@ -230,6 +231,15 @@ function App() {
             element={
               <UserPrivateRoute>
                 <CartPage />
+              </UserPrivateRoute>
+            }
+          />
+
+          <Route
+            path="/makeyourown"
+            element={
+              <UserPrivateRoute>
+                <MakeYourOwn />
               </UserPrivateRoute>
             }
           />

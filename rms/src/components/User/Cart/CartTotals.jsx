@@ -21,12 +21,12 @@ const CartTotals = () => {
           body: updateCart,
         }
       );
+      const data = await response.data;
+      window.location.href = data.url;
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-
-      const data = await response.data;
     } catch (error) {
       console.error("An error occurred while posting the data.", error);
     }

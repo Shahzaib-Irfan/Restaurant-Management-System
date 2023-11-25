@@ -30,7 +30,7 @@ const cart_reducer = (state, action) => {
         date,
         dish,
         amount,
-        image: dish.images,
+        image: dish.image,
       };
       return { ...state, cart: [...state.cart, newProduct] };
     }

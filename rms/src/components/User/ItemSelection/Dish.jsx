@@ -61,6 +61,7 @@ const Dish = (
                     {
                       name: name,
                       price: price,
+                      image: image,
                     }
                   )
                 }

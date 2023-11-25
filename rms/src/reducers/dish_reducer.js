@@ -12,7 +12,7 @@ const dish_reducer = (state, action) => {
     return { ...state, isLoading: true };
   }
   if (action.type === GET_DISH_SUCCESS) {
-    const featured = action.payload;
+    const featured = action.payload.slice(0, 3);
     return { ...state, isLoading: false, dishes: action.payload, featured };
   }
   if (action.type === GET_DISH_ERROR) {

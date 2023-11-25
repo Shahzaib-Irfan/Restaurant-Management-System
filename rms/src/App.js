@@ -31,6 +31,8 @@ import SingleEmployee from "./components/Admin/Employee/SingleEmployee";
 import UserOrders from "./components/User/Bookings/UserOrders";
 import SingleUserOrder from "./components/User/Bookings/SingleUserOrder";
 import AllOrders from "./components/Admin/Orders/AllOrders";
+import AdminPrivateRoute from "./pages/AdminPrivateRoute";
+import UserPrivateRoute from "./pages/UserPrivateRoute";
 
 function App() {
   return (
@@ -38,62 +40,199 @@ function App() {
       <div>
         <Navbar />
         <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route exact path="/home" element={<Home />} />
+          <Route exact path="/" element={<LandingPage />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/managedishes" element={<AdminDishes />} />
-          <Route path="/managedishes/adddish" element={<AddDish />} />
-          <Route path="/managedishes/viewdish/:id" element={<SingleDish />} />
-          <Route path="/managedishes/updatedish/:id" element={<UpdateDish />} />
-          <Route path="/userorders" element={<AllOrders />} />
+          <Route
+            path="/managedishes"
+            element={
+              <AdminPrivateRoute>
+                <AdminDishes />
+              </AdminPrivateRoute>
+            }
+          />
+          <Route
+            path="/managedishes/adddish"
+            element={
+              <AdminPrivateRoute>
+                <AddDish />
+              </AdminPrivateRoute>
+            }
+          />
+          <Route
+            path="/managedishes/viewdish/:id"
+            element={
+              <AdminPrivateRoute>
+                <SingleDish />
+              </AdminPrivateRoute>
+            }
+          />
+          <Route
+            path="/managedishes/updatedish/:id"
+            element={
+              <AdminPrivateRoute>
+                <UpdateDish />
+              </AdminPrivateRoute>
+            }
+          />
+          <Route
+            path="/userorders"
+            element={
+              <AdminPrivateRoute>
+                <AllOrders />
+              </AdminPrivateRoute>
+            }
+          />
           <Route
             path="/userorders/vieworder/:id"
-            element={<SingleUserOrder />}
+            element={
+              <AdminPrivateRoute>
+                <SingleUserOrder />
+              </AdminPrivateRoute>
+            }
           />
-          <Route path="/managerestaurants" element={<ManageRestaurants />} />
+          <Route
+            path="/managerestaurants"
+            element={
+              <AdminPrivateRoute>
+                <ManageRestaurants />
+              </AdminPrivateRoute>
+            }
+          />
           <Route
             path="/managerestaurants/viewrestaurant/:id"
-            element={<SingleRestaurant />}
+            element={
+              <AdminPrivateRoute>
+                <SingleRestaurant />
+              </AdminPrivateRoute>
+            }
           />
           <Route
             path="/managerestaurants/addrestaurant"
-            element={<AddRestaurant />}
+            element={
+              <AdminPrivateRoute>
+                <AddRestaurant />
+              </AdminPrivateRoute>
+            }
           />
           <Route
             path="/managerestaurants/updaterestaurant/:id"
-            element={<UpdateRestaurant />}
+            element={
+              <AdminPrivateRoute>
+                <UpdateRestaurant />
+              </AdminPrivateRoute>
+            }
           />
-          <Route path="/managetables" element={<ManageTables />} />
-          <Route path="/managetables/viewtable/:id" element={<SingleTable />} />
-          <Route path="/managetables/addtable" element={<AddTable />} />
+          <Route
+            path="/managetables"
+            element={
+              <AdminPrivateRoute>
+                <ManageTables />
+              </AdminPrivateRoute>
+            }
+          />
+          <Route
+            path="/managetables/viewtable/:id"
+            element={
+              <AdminPrivateRoute>
+                <SingleTable />
+              </AdminPrivateRoute>
+            }
+          />
+          <Route
+            path="/managetables/addtable"
+            element={
+              <AdminPrivateRoute>
+                <AddTable />
+              </AdminPrivateRoute>
+            }
+          />
           <Route
             path="/managetables/updatetable/:id"
-            element={<UpdateTable />}
+            element={
+              <AdminPrivateRoute>
+                <UpdateTable />
+              </AdminPrivateRoute>
+            }
           />
-          <Route path="/manageemployees" element={<ManageEmployees />} />
+          <Route
+            path="/manageemployees"
+            element={
+              <AdminPrivateRoute>
+                <ManageEmployees />
+              </AdminPrivateRoute>
+            }
+          />
           <Route
             path="/manageemployees/viewemployee/:id"
-            element={<SingleEmployee />}
+            element={
+              <AdminPrivateRoute>
+                <SingleEmployee />
+              </AdminPrivateRoute>
+            }
           />
           <Route
             path="/manageemployees/addemployee"
-            element={<AddEmployee />}
+            element={
+              <AdminPrivateRoute>
+                <AddEmployee />
+              </AdminPrivateRoute>
+            }
           />
           <Route
             path="/manageemployees/updateemployee/:id"
-            element={<UpdateEmployee />}
+            element={
+              <AdminPrivateRoute>
+                <UpdateEmployee />
+              </AdminPrivateRoute>
+            }
           />
-          <Route path="/itemselection/restaurants" element={<MainPage />} />
-          <Route path="/itemselection/restaurants/:id" element={<Dishes />} />
+          <Route
+            path="/itemselection/restaurants"
+            element={
+              <UserPrivateRoute>
+                <MainPage />
+              </UserPrivateRoute>
+            }
+          />
+          <Route
+            path="/itemselection/restaurants/:id"
+            element={
+              <UserPrivateRoute>
+                <Dishes />
+              </UserPrivateRoute>
+            }
+          />
           {/* <Route
             path="/itemselection/restaurants/:id/:dishID"
             element={<SingleDish />}
           /> */}
-          <Route path="/orders" element={<UserOrders />} />
-          <Route path="/orders/vieworder/:id" element={<SingleUserOrder />} />
-          <Route path="/cart" element={<CartPage />} />
+          <Route
+            path="/orders"
+            element={
+              <UserPrivateRoute>
+                <UserOrders />
+              </UserPrivateRoute>
+            }
+          />
+          <Route
+            path="/orders/vieworder/:id"
+            element={
+              <UserPrivateRoute>
+                <SingleUserOrder />
+              </UserPrivateRoute>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <UserPrivateRoute>
+                <CartPage />
+              </UserPrivateRoute>
+            }
+          />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
       </div>

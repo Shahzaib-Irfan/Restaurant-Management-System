@@ -1,16 +1,13 @@
 import { React, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-// import Room from "./rooms/Room";
-// import { useAuthContext } from "../contexts/AuthContext";
-// import { useRoomsContext } from "../contexts/RoomsContext";
+import DisplayDish from "./Admin/Dishes/DisplayDish";
+import { useUserContext } from "../contexts/UserContext";
+import { useDishesContext } from "../contexts/DishContext";
 
 const FeaturedRooms = () => {
-  // const { featured, fetchFeaturedRooms } = useRoomsContext();
-  // const { user, isAuthenticated } = useAuthContext();
-  // useEffect(() => {
-  //   fetchFeaturedRooms();
-  // }, []);
+  const { featured } = useDishesContext();
+  const { currentUser, token } = useUserContext();
   return (
     <>
       <Wrapper className="section">
@@ -21,23 +18,21 @@ const FeaturedRooms = () => {
           <div className="underline"></div>
         </div>
         <div className="section-center featured">
-          {/* {featured.map((room) => {
-            console.log(room._id);
-            return <Room key={room.id} {...room} />;
-          })} */}
+          {featured.map((dish) => {
+            return <DisplayDish key={dish.id} {...dish} />;
+          })}
         </div>
-        {/* {isAuthenticated ? (
-          user["email"] === "shahzaibirfan1012@gmail.com" ||
-          user["email"] === "shahzaibtest@mail.com" ? (
+        {currentUser ? (
+          currentUser["role"] === "admin" ? (
             <Link to="/managerooms" className="btn">
               Manage Rooms
             </Link>
           ) : (
-            <Link to="/viewrooms" className="btn">
+            <Link to="/itemselection/restaurants" className="btn">
               All Rooms
             </Link>
           )
-        ) : null} */}
+        ) : null}
       </Wrapper>
       ;
     </>
@@ -47,7 +42,8 @@ const FeaturedRooms = () => {
 const Wrapper = styled.section`
   background: hsl(210, 36%, 96%);
   .featured {
-    margin: 4rem auto;
+    width: 100%;
+    margin: 2rem auto;
     display: grid;
     flex-direction: row;
     gap: 2.5rem;

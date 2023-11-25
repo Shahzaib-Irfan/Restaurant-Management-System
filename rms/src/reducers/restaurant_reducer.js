@@ -31,6 +31,7 @@ const restaurant_reducer = (state, action) => {
       ...state,
       singleRestaurant: action.payload,
       singleRestaurantLoading: false,
+      singleRestaurantError: false,
     };
   }
   if (action.type === "SETMODE") {

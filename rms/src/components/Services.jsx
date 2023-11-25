@@ -7,7 +7,7 @@ const Services = () => {
       <section className="cards-info">
         <div className="info">
           <h2>
-            Beautiful Food <br />
+            Delicious Food <br />
             Made Only For You
           </h2>
           <p>

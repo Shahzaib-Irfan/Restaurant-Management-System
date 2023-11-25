@@ -30,7 +30,7 @@ const AdminNavbar = () => {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">
+              <Link className="nav-link active" aria-current="page" to="/home">
                 Home
               </Link>
             </li>
@@ -47,11 +47,6 @@ const AdminNavbar = () => {
             <li className="nav-item">
               <Link className="nav-link active" to="orders">
                 Your Orders
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link active" to="manageemployees">
-                Employees
               </Link>
             </li>
           </ul>

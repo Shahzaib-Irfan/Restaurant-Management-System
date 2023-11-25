@@ -8,7 +8,8 @@ const {
 
 router.post("/users", userController.createUser);
 router.post("/login", userController.login);
-router.get("/users/getUsers", userController.getUser);
+router.get("/users/getUsers", userController.getUsers);
+router.get("/users/getSingleUser/:id", userController.getSingleUser);
 router.put("/users/updateUser/:id", userController.updateUser);
 router.delete("/users/deleteUser/:id", userController.deleteUser);
 //router.post("/admin", validateToken, userController.adminDasboard);

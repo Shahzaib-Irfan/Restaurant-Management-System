@@ -19,10 +19,20 @@ async function createUser(req, res) {
   }
 }
 
-async function getUser(req, res) {
+async function getUsers(req, res) {
   try {
     const users = await User.find({});
     res.send(users);
+  } catch (err) {
+    console.log(err);
+    res.send(500).json({ error: err.message });
+  }
+}
+
+async function getSingleUser(req, res) {
+  try {
+    const user = await User.findOne({ _id: req.params["id"] });
+    res.send(user);
   } catch (err) {
     console.log(err);
     res.send(500).json({ error: err.message });
@@ -83,7 +93,8 @@ async function adminDasboard(req, res) {
 
 module.exports = {
   createUser,
-  getUser,
+  getUsers,
+  getSingleUser,
   updateUser,
   deleteUser,
   login,

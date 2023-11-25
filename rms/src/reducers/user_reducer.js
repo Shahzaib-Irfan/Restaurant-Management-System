@@ -3,6 +3,9 @@ import {
   GET_USER_BEGIN,
   GET_USER_SUCCESS,
   GET_USER_ERROR,
+  GET_CURRENT_USER_BEGIN,
+  GET_CURRENT_USER_SUCCESS,
+  GET_CURRENT_USER_ERROR,
   GET_SINGLE_USER_BEGIN,
   GET_SINGLE_USER_SUCCESS,
   GET_SINGLE_USER_ERROR,
@@ -32,10 +35,28 @@ const user_reducer = (state, action) => {
   if (action.type === GET_USER_ERROR) {
     return { ...state, isError: true, isLoading: false };
   }
+
   if (action.type === GET_SINGLE_USER_BEGIN) {
-    return { ...state, currentUserLoading: true };
+    return { ...state, singleUserLoading: true };
   }
   if (action.type === GET_SINGLE_USER_SUCCESS) {
+    return {
+      ...state,
+      singleUser: action.payload,
+      singleUserLoading: false,
+    };
+  }
+  if (action.type === GET_SINGLE_USER_ERROR) {
+    return {
+      ...state,
+      singleUserError: true,
+      singleUserLoading: false,
+    };
+  }
+  if (action.type === GET_CURRENT_USER_BEGIN) {
+    return { ...state, currentUserLoading: true };
+  }
+  if (action.type === GET_CURRENT_USER_SUCCESS) {
     localStorage.setItem(
       "user",
       JSON.stringify({
@@ -52,7 +73,7 @@ const user_reducer = (state, action) => {
       currentUserLoading: false,
     };
   }
-  if (action.type === GET_SINGLE_USER_ERROR) {
+  if (action.type === GET_CURRENT_USER_ERROR) {
     return {
       ...state,
       currentUserError: true,

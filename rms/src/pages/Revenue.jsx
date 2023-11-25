@@ -4,34 +4,21 @@ import { useUserContext } from "../contexts/UserContext";
 import { useDishesContext } from "../contexts/DishContext";
 import Loading from "../constants/Loading";
 import axios from "axios";
+import DisplayPayment from "../components/Admin/Payments/DisplayPayment";
 
 const calculateTotalRevenue = (payments) => {
-  return payments.reduce((total, payment) => total + payment.amount, 0);
+  return payments.reduce((total, payment) => total + payment.totalAmount, 0);
 };
 
 const RevenuePage = () => {
-  const { loading, setLoading } = useRoomsContext();
+  const { orders, fetchUserOrders, isOrdersLoading, userOrdersError } =
+    useUserContext();
   const [payments, setPayments] = useState([]);
-  const totalRevenue = calculateTotalRevenue(payments);
+  const totalRevenue = calculateTotalRevenue(orders);
   useEffect(() => {
-    const fetchPayments = async () => {
-      try {
-        setLoading(true);
-        const response = await axios.get(
-          `https://smoggy-cheddar-banon.glitch.me/payments/getAllPayments`
-        );
-        const data = response.data;
-        console.log(data);
-        setPayments(data);
-        setLoading(false);
-      } catch (err) {
-        setLoading(false);
-        console.log(err);
-      }
-    };
-    fetchPayments();
+    fetchUserOrders();
   }, []);
-  if (loading) {
+  if (isOrdersLoading || userOrdersError) {
     return <Loading />;
   } else {
     return (
@@ -40,16 +27,15 @@ const RevenuePage = () => {
         <Table>
           <thead>
             <tr>
-              <th>ID</th>
-              <th>Amount</th>
+              <th>User</th>
+              <th>Dish</th>
+              <th>Unit Price</th>
+              <th>SubTotal</th>
             </tr>
           </thead>
           <tbody>
-            {payments.map((payment) => (
-              <tr key={payment.id}>
-                <td>{payment.bookingId}</td>
-                <td>Rs. {payment.amount}/-</td>
-              </tr>
+            {orders.map((order) => (
+              <DisplayPayment {...order} />
             ))}
           </tbody>
         </Table>

@@ -34,6 +34,7 @@ import AllOrders from "./components/Admin/Orders/AllOrders";
 import AdminPrivateRoute from "./pages/AdminPrivateRoute";
 import UserPrivateRoute from "./pages/UserPrivateRoute";
 import MakeYourOwn from "./components/User/Dishes/MakeYourOwn";
+import RevenuePage from "./pages/Revenue";
 
 function App() {
   return (
@@ -187,6 +188,14 @@ function App() {
             element={
               <AdminPrivateRoute>
                 <UpdateEmployee />
+              </AdminPrivateRoute>
+            }
+          />
+          <Route
+            path="/revenue"
+            element={
+              <AdminPrivateRoute>
+                <RevenuePage />
               </AdminPrivateRoute>
             }
           />

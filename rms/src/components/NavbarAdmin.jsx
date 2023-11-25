@@ -59,6 +59,11 @@ const AdminNavbar = () => {
                 Orders
               </Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link active" to="revenue">
+                Revenue
+              </Link>
+            </li>
           </ul>
           <form className="d-flex">
             <div

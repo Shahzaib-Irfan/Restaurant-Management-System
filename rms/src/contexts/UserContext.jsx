@@ -6,6 +6,9 @@ import {
   GET_USER_BEGIN,
   GET_USER_SUCCESS,
   GET_USER_ERROR,
+  GET_CURRENT_USER_BEGIN,
+  GET_CURRENT_USER_SUCCESS,
+  GET_CURRENT_USER_ERROR,
   GET_SINGLE_USER_BEGIN,
   GET_SINGLE_USER_SUCCESS,
   GET_SINGLE_USER_ERROR,
@@ -42,6 +45,9 @@ const initialState = {
   isError: false,
   isOrdersLoading: false,
   userOrdersError: false,
+  singleUser: {},
+  singleUserLoading: false,
+  singleUserError: false,
   currentUser: getUserFromMemory("currentUser"),
   singleUserOrders: [],
   singleOrder: {},
@@ -57,7 +63,7 @@ const UserContext = React.createContext();
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const loginWithAuthentication = async (username, password) => {
-    dispatch({ type: GET_SINGLE_USER_BEGIN });
+    dispatch({ type: GET_CURRENT_USER_BEGIN });
     try {
       const response = await axios.post("http://localhost:3005/userApi/login", {
         username,
@@ -65,13 +71,13 @@ export const UserProvider = ({ children }) => {
       });
       const { token, user, redirect } = response.data;
       dispatch({
-        type: GET_SINGLE_USER_SUCCESS,
+        type: GET_CURRENT_USER_SUCCESS,
         payload: { token, user, redirect },
       });
       //window.location.href = redirect;
     } catch (error) {
       dispatch({
-        type: GET_SINGLE_USER_ERROR,
+        type: GET_CURRENT_USER_ERROR,
       });
     }
   };
@@ -81,6 +87,18 @@ export const UserProvider = ({ children }) => {
       payload: { user: {}, token: "" },
     });
     window.location.href = "/login";
+  };
+
+  const fetchSingleUser = async (url) => {
+    dispatch({ type: GET_SINGLE_USER_BEGIN });
+    try {
+      const response = await axios.get(url);
+      const data = await response.data;
+      dispatch({ type: GET_SINGLE_USER_SUCCESS, payload: data });
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: GET_SINGLE_USER_ERROR });
+    }
   };
 
   const fetchSingleUserOrders = async (url) => {
@@ -127,6 +145,7 @@ export const UserProvider = ({ children }) => {
         fetchSingleUserOrders,
         fetchUserOrders,
         fetchSingleOrder,
+        fetchSingleUser,
       }}
     >
       {children}

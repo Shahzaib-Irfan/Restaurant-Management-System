@@ -1,3 +1,4 @@
+import { act } from "react-dom/test-utils";
 import {
   GET_USER_BEGIN,
   GET_USER_SUCCESS,
@@ -15,6 +16,7 @@ import {
   GET_SINGLE_ORDER_SUCCESS,
   GET_SINGLE_ORDER_ERROR,
 } from "../actions";
+import { json } from "react-router-dom";
 
 const user_reducer = (state, action) => {
   if (action.type === GET_USER_BEGIN) {
@@ -34,6 +36,13 @@ const user_reducer = (state, action) => {
     return { ...state, currentUserLoading: true };
   }
   if (action.type === GET_SINGLE_USER_SUCCESS) {
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        token: action.payload["token"],
+        currentUser: action.payload["user"],
+      })
+    );
     return {
       ...state,
       currentUser: action.payload["user"],

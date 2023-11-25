@@ -20,17 +20,29 @@ import {
   GET_SINGLE_ORDER_ERROR,
 } from "../actions";
 
+const getUserFromMemory = (el) => {
+  let user = localStorage.getItem("user");
+  if (user) {
+    user = JSON.parse(user);
+    return user[el];
+  } else if (el === "token") {
+    return "";
+  } else {
+    return {};
+  }
+};
+
 const initialState = {
   users: [],
   orders: [],
-  token: "",
+  token: getUserFromMemory("token"),
   message: "",
   redirect: "",
   isLoading: false,
   isError: false,
   isOrdersLoading: false,
   userOrdersError: false,
-  currentUser: {},
+  currentUser: getUserFromMemory("currentUser"),
   singleUserOrders: [],
   singleOrder: {},
   singleOrderLoading: false,

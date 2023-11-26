@@ -9,6 +9,7 @@ import { TablesProvider } from "./contexts/TableContext";
 import { EmployeesProvider } from "./contexts/EmployeeContext";
 import { CartProvider } from "./contexts/CartContext";
 import { UserProvider } from "./contexts/UserContext";
+import { UserDishesProvider } from "./contexts/UserDishContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -18,7 +19,9 @@ root.render(
         <RestaurantsProvider>
           <TablesProvider>
             <DishesProvider>
-              <App />
+              <UserDishesProvider>
+                <App />
+              </UserDishesProvider>
             </DishesProvider>
           </TablesProvider>
         </RestaurantsProvider>

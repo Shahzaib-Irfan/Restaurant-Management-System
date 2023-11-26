@@ -60,6 +60,11 @@ const AdminNavbar = () => {
               </Link>
             </li>
             <li className="nav-item">
+              <Link className="nav-link active" to="manageuserdishes">
+                Suggestions
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link className="nav-link active" to="revenue">
                 Revenue
               </Link>

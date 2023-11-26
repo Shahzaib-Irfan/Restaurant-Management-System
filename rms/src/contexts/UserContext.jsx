@@ -74,7 +74,7 @@ export const UserProvider = ({ children }) => {
         type: GET_CURRENT_USER_SUCCESS,
         payload: { token, user, redirect },
       });
-      //window.location.href = redirect;
+      window.location.href = redirect;
     } catch (error) {
       dispatch({
         type: GET_CURRENT_USER_ERROR,

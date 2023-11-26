@@ -35,6 +35,8 @@ import AdminPrivateRoute from "./pages/AdminPrivateRoute";
 import UserPrivateRoute from "./pages/UserPrivateRoute";
 import MakeYourOwn from "./components/User/Dishes/MakeYourOwn";
 import RevenuePage from "./pages/Revenue";
+import DishesPage from "./components/Admin/UserDishes/DishesPage";
+import SingleUserDish from "./components/Admin/UserDishes/SingleUserDish";
 
 function App() {
   return (
@@ -47,6 +49,23 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/login" element={<Login />} />
+          <Route
+            path="/manageuserdishes"
+            element={
+              <AdminPrivateRoute>
+                <DishesPage />
+              </AdminPrivateRoute>
+            }
+          />
+
+          <Route
+            path="/manageuserdishes/viewdish/:id"
+            element={
+              <AdminPrivateRoute>
+                <SingleUserDish />
+              </AdminPrivateRoute>
+            }
+          />
           <Route
             path="/managedishes"
             element={

@@ -26,7 +26,7 @@ async function createUserDish(req, res) {
 
 async function getUserDishes(req, res) {
   try {
-    const products = await UserDish.find({});
+    const products = await Userdish.find({});
     res.send(products);
   } catch (err) {
     console.log(err);
@@ -37,7 +37,7 @@ async function getUserDishes(req, res) {
 async function getUserDish(req, res) {
   try {
     const id = req.params.id;
-    const product = await Dish.findById(id);
+    const product = await Userdish.findById(id);
     res.send(product);
   } catch (err) {
     console.log(err);
